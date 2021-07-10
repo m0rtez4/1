@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    ورود/ثبت نام
+{% endblock %}
+{% block content %}
+
+    <div class="page-content">
+		<div class="holder breadcrumbs-wrap mt-0">
+			<div class="container">
+				<ul class="breadcrumbs">
+					<li><a href="index.html">خانه</a></li>
+					<li><span>ایجاد حساب کاربری</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="holder">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12 col-lg-12">
+						<h2 class="text-center">ورود / ثبت نام</h2>
+						<div class="form-wrapper text-center">
+
+							<form action="" method="post">
+                                {% csrf_token %}
+								<div class="row justify-content-center">
+									<div class="col-sm-8 center">
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} text-center" role="alert" >
+                                        {{ message}}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                        <br>
+										<div class="form-group col-auto">
+                                            <input type="text" name="mobile"  class="form-control text-center" readonly value="{{ mobile }}">
+											<input type="number" name="otp"  class="form-control" placeholder="لطفا کد ارسال شده را وارد کنید">
+
+										</div>
+									</div>
+								</div>
+								<div class="text-center">
+									<button class="btn" type="submit" value="Check OTP">ارسال کد</button>
+                                    <a class="btn" href="{% url 'accounts:register_view' %}">تغییر شماره موبایل</a>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
