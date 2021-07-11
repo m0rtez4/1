@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    آدرس
+{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+
+        <div class="page-content">
+		<div class="holder breadcrumbs-wrap mt-0">
+			<div class="container">
+				<ul class="breadcrumbs">
+					<li><a href="index.html">خانه</a></li>
+					<li><span>حساب کاربری من</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="holder">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 aside aside--left">
+						<div class="list-group">
+							<a href="{% url 'accounts:profile' %}" class="list-group-item">جزئیات حساب کاربری</a>
+							<a href="{% url 'accounts:address' %}" class="list-group-item active">آدرس های من</a>
+							<a href="account-wishlist.html" class="list-group-item">لیست علاقه مندی</a>
+							<a href="account-history.html" class="list-group-item">تاریخچه سفارشات من</a>
+							<a href="#" class="list-group-item disabled">نظرات من</a>
+							<a href="#" class="list-group-item disabled">برچسب های ذخیره شده من</a>
+							<a href="#" class="list-group-item disabled">لیست مقایسه محصولات من</a>
+						</div>
+					</div>
+					<div class="col-md-14 aside">
+						<h1 class="mb-3">آدرس های من</h1>
+						<div class="row">
+							<div class="col-sm-9">
+								<div class="card">
+									<div class="card-body">
+										<h3>آدرس پیش فرض</h3>
+										<p>{{ user.first_name}}-{{ user.last_name }}
+											<br> {{ user.address}}
+                                            <br> {% if user.postal_code != None %}{{ user.postal_code }}
+                                                {% endif %}
+											</p>
+										<div class="mt-2 clearfix">
+											<a href="#" class="link-icn js-show-form" data-form="#updateAddress"><i class="icon-pencil"></i>ویرایش</a>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="card mt-3 d-none" id="updateAddress">
+                            <form method="post" name="">
+                                        {% csrf_token %}
+							<div class="card-body">
+								<h3>ویرایش آدرس</h3>
+
+								<label class="text-uppercase">آدرس : </label>
+										<div class="form-group">
+											<input type="text" class="form-control" name="address" value="{{ user.address }}">
+										</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<label class="text-uppercase">کد پستی : </label>
+										<div class="form-group">
+											<input type="number" class="form-control" name="postal_code" value="{{ user.postal_code }}">
+										</div>
+									</div>
+								</div>
+
+								<div class="mt-2">
+									<button type="reset" class="btn btn--alt js-close-form" data-form="#updateAddress">لغو</button>
+									<button type="submit" class="btn ml-1">افزودن آدرس</button>
+								</div>
+							</div>
+                            </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+    {% else %}
+    no
+    {% endif %}
+{% endblock %}
