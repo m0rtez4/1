@@ -9,6 +9,8 @@ from accounts.myusermanager import MyUserManager
 class MyUser(AbstractUser):
     username = None
     mobile = models.CharField(max_length=11,unique=True)
+    address = models.TextField(blank=True)
+    postal_code = models.PositiveIntegerField(blank=True,null=True)
     otp = models.PositiveIntegerField(blank=True,null=True)
     otp_create_time = models.DateTimeField(auto_now=True)
 
