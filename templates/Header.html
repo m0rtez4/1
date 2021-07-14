@@ -139,27 +139,29 @@
 						</div>
 						<div class="hdr-nav hide-mobile nav-holder justify-content-center px-4">
 							<ul class="mmenu mmenu-js">
-								<li class="mmenu-item--simple"><a href="#" class="active">خانه</a>
-									<div class="mmenu-submenu d-flex">
-										<ul class="submenu-list mt-0">
-											<li><a href="index.html">پوسته مُد (پیش فرض)</a><span
-													class="submenu-link-image"><img src="{% static 'images/screen/screen01.webp' %}"
-														alt=""></span></li>
+								<li class="mmenu-item--simple"><a href="#">دسته بندی ها</a>
+                                <div class="mmenu-submenu">
+                                    <ul class="submenu-list">
+                                        {% for data in category %}
+                                        <li><a href="{% url 'home:category' data.slug%}">{{ data.name}}</a>
+                                            {% if data.sub.first  %}
+                                            <ul>
+                                            {% for info in data.sub.all %}
+                                                <li><a href="{% url 'home:category' info.slug%}">{{ info.name}}</a>
+                                                </li>
+                                            {% endfor %}
 
-											<li><a href="index-books.html">پوسته کتاب<span
-														class="menu-label  menu-label--color3">جدید</span></a><span
-													class="submenu-link-image"><img
-														src="{% static 'images/screen/screen-books.webp' %}" alt=""></span></li>
-										</ul>
-										<ul class="submenu-list mt-0">
-											<li><a href="#">پوسته فنجان و لیوان <span
-														class="menu-label menu-label--color1">به زودی</span></a><span
-													class="submenu-link-image"><img src="{% static 'images/screen/screen-cups.webp' %}"
-														alt=""></span></li>
+                                            </ul>
+                                        {% endif %}
+                                        </li>
+                                        {% endfor %}
 
-										</ul>
-									</div>
-								</li>
+
+
+
+                                    </ul>
+                                </div>
+                            </li>
 								<li class="mmenu-item--simple"><a href="#">صفحات</a>
 									<div class="mmenu-submenu">
 										<ul class="submenu-list">
