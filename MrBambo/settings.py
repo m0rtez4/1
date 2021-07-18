@@ -31,7 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'ckeditor',
+    'taggit'
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.MyUser'
 
 Kavenegar_API = '6579422F53417A2F55396F70485061304933444B454A32503065647244417551486A435457382F6A335A773D'
+
+
+
+CKEDITOR_CONFIGS = {
+    'default':{
+        'toolbar':'full',
+    },
+}
+
+TAGGIT_CASE_INSENSITIVE = True
