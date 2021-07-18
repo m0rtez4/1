@@ -12,6 +12,20 @@
     {% include '_HeaderR.html' %}
 
 </head>
+<style>
+	.slick-slider .slick-track,
+	.slick-slider .slick-list {
+		direction: ltr;
+	}
+
+	@media (max-width: 767px) {
+
+		.product-previews-carousel .slick-slide,
+		.product-previews-carousel .slick-slide:hover {
+			float: left;
+		}
+	}
+</style>
 
 <body class="template-collection has-smround-btns has-loader-bg equal-height has-sm-container">
 	{% include 'Header.html' %}
