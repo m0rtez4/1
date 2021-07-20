@@ -107,3 +107,6 @@ def address(request):
         'user': user
     }
     return render(request, 'accounts/address.html', context)
+
+
+
