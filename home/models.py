@@ -2,6 +2,10 @@ from django.db import models
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from taggit.managers import TaggableManager
+from django import forms
+
+from accounts.models import MyUser
+
 
 class Category(models.Model):
     sub_category = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True,related_name='sub')
@@ -95,3 +99,30 @@ class Variants(models.Model):
             total = (self.discount * self.unit_price)/100
             return int(self.unit_price - total)
         return self.total_price
+
+class Comment(models.Model):
+    user = models.ForeignKey(MyUser,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    comment = models.TextField()
+    create = models.DateTimeField(auto_now_add=True)
+    reply = RichTextField(blank=True)
+    is_active = models.BooleanField(default=False)
+    is_reply = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.product.name
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment',]
+        widgets = {
+            'comment': forms.Textarea(attrs={'class':'form-control form-control--sm textarea--height-200','placeholder':'پیام'})
+        }
+        labels={
+            'comment':''
+        }
+
+class Images(models.Model):
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='gallery/',blank=True)

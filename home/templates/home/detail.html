@@ -902,7 +902,6 @@
                                     <ul>
                                         <li class="active"><a href="#"><span>تومان</span></a></li>
                                         <li><a href="#"><span>دلار</span></a></li>
-                                        <li><a href="#"><span>لیر</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -919,8 +918,6 @@
                                         <li class="active"><a href="#"><img src="images/flags/en.webp"
                                                                             alt="">فارسی</a></li>
                                         <li><a href="#"><img src="images/flags/en.webp" alt="">انگلیسی</a></li>
-                                        <li><a href="#"><img src="images/flags/de.webp" alt="">آلمانی</a></li>
-                                        <li><a href="#"><img src="images/flags/fr.webp" alt="">فرانسوی</a> </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1080,6 +1077,15 @@
                             <div class="prd-block_main-image-holder" id="prdMainImage">
                                 <div class="product-main-carousel js-product-main-carousel"
                                      data-zoom-position="inner">
+
+                                    <div data-value="{{ product.id }}">
+                                        <span class="prd-img">
+                                            <img
+                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                    data-src="{{ product.image.url}}"
+                                                    class="lazyload fade-up elzoom" alt=""
+                                                    data-zoom-image="{{ product.image.url}}" /></span>
+                                    </div>
                                     {% for data in variant %}
                                         <div data-value="{{ data.id }}">
                                         <span class="prd-img">
@@ -1091,112 +1097,50 @@
                                         </span>
                                         </div>
                                     {% endfor %}
-                                    <div data-value="Beige">
+                                    {% for img in images %}
+                                        <div data-value="{{ img.id }}">
                                         <span class="prd-img">
                                             <img
                                                     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                    data-src="images/skins/fashion/product-page/product-02.webp"
+                                                    data-src="{{ img.image.url}}"
                                                     class="lazyload fade-up elzoom" alt=""
-                                                    data-zoom-image="images/skins/fashion/product-page/product-02.webp" /></span>
-                                    </div>
-                                    <div data-value="Beige">
-                                        <span class="prd-img">
-                                            <img
-                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                    data-src="images/skins/fashion/product-page/product-03.webp"
-                                                    class="lazyload fade-up elzoom" alt=""
-                                                    data-zoom-image="images/skins/fashion/product-page/product-03.webp" /></span>
-                                    </div>
-                                    <div data-value="Black"><span class="prd-img"><img
-                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                            data-src="images/skins/fashion/product-page/product-04.webp"
-                                            class="lazyload fade-up elzoom" alt=""
-                                            data-zoom-image="images/skins/fashion/product-page/product-04.webp" /></span>
-                                    </div>
-                                    <div data-value="Black"><span class="prd-img"><img
-                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                            data-src="images/skins/fashion/product-page/product-05.webp"
-                                            class="lazyload fade-up elzoom" alt=""
-                                            data-zoom-image="images/skins/fashion/product-page/product-05.webp" /></span>
-                                    </div>
-                                    <div data-value="Black"><span class="prd-img"><img
-                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                            data-src="images/skins/fashion/product-page/product-06.webp"
-                                            class="lazyload fade-up elzoom" alt=""
-                                            data-zoom-image="images/skins/fashion/product-page/product-06.webp" /></span>
-                                    </div>
-                                    <div data-value="Red"><span class="prd-img"><img
-                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                            data-src="images/skins/fashion/product-page/product-07.webp"
-                                            class="lazyload fade-up elzoom" alt=""
-                                            data-zoom-image="images/skins/fashion/product-page/product-07.webp" /></span>
-                                    </div>
-                                    <div data-value="Red"><span class="prd-img"><img
-                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                            data-src="images/skins/fashion/product-page/product-08.webp"
-                                            class="lazyload fade-up elzoom" alt=""
-                                            data-zoom-image="images/skins/fashion/product-page/product-08.webp" /></span>
-                                    </div>
-                                    <div data-value="Red"><span class="prd-img"><img
-                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                            data-src="images/skins/fashion/product-page/product-09.webp"
-                                            class="lazyload fade-up elzoom" alt=""
-                                            data-zoom-image="images/skins/fashion/product-page/product-09.webp" /></span>
-                                    </div>
+                                                    data-zoom-image="{{ img.image.url}}" /></span>
+                                        </div>
+                                    {% endfor %}
+
+
+
                                 </div>
+                            {% if product.discount %}
                                 <div class="prd-block_label-sale-squared justify-content-center align-items-center">
                                     <span>فروش ویژه</span></div>
+                            {% endif %}
                             </div>
                             <div class="prd-block_main-image-links">
-                                <a data-fancybox data-width="900" href="images/video/product.mp4"
-                                   class="prd-block_video-link"><i class="icon-video"></i></a>
-                                <a href="images/products//product-01.webp" class="prd-block_zoom-link"><i
+                                <a href="" class="prd-block_zoom-link"><i
                                         class="icon-zoom-in"></i></a>
                             </div>
                         </div>
                         <div class="product-previews-wrapper">
                             <div class="product-previews-carousel js-product-previews-carousel">
-                                <a href="#" data-value="Beige"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-01.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
-                                <a href="#" data-value="Beige"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-02.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
-                                <a href="#" class="prd-block_video-link video-slide">
-										<span><span><i class="icon icon-play"></i><img
-                                                src="images/skins/fashion/product-page/product-video.webp"
-                                                alt="" /></span></span>
-                                </a>
-                                <a href="#" data-value="Beige"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-03.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
-                                <a href="#" data-value="Black"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-04.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
-                                <a href="#" data-value="Black"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-05.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
-                                <a href="#" data-value="Black"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-06.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
-                                <a href="#" data-value="Red"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-07.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
-                                <a href="#" data-value="Red"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-08.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
-                                <a href="#" data-value="Red"><span class="prd-img"><img
-                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                        data-src="images/skins/fashion/product-page/product-09.webp"
-                                        class="lazyload fade-up" alt="" /></span></a>
+                            <a href="#" data-value="{{ product.id }}"><span class="prd-img"><img
+                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            data-src="{{ product.image.url}}"
+                                            class="lazyload fade-up" alt="" /></span></a>
+                                {% for data in variant %}
+                                    <a href="#" data-value="{{ data.id }}"><span class="prd-img"><img
+                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            data-src="{{ data.image.url}}"
+                                            class="lazyload fade-up" alt="" /></span></a>
+                                {% endfor %}
+                                {% for img in images %}
+                                    <a href="#" data-value="{{ img.id }}"><span class="prd-img"><img
+                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            data-src="{{ img.image.url}}"
+                                            class="lazyload fade-up" alt="" /></span></a>
+                                {% endfor %}
+
+
                             </div>
                         </div>
                     </div>
@@ -1754,157 +1698,76 @@
                     </form>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="Tab5">
-                    <div id="productReviews">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h2>نظرات مشتریان</h2>
-                            </div>
-                            <div class="col-18 col-md-auto mb-3 mb-md-0"><a href="#" class="review-write-link"><i
-                                    class="icon-pencil"></i>نوشتن نظر</a></div>
-                        </div>
-                        <div id="productReviewsBottom">
-                            <div class="review-item">
-                                <div class="review-item_rating">
-                                    <i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i>
-                                </div>
-                                <div class="review-item_top row align-items-center">
-                                    <div class="col">
-                                        <h5 class="review-item_author">رضا افشار در 25
-                                            اسفند 1399</h5>
+                    <form action="{% url 'home:product_comment' product.id  %}" method="post">
+                        {% csrf_token %}
+                        <div id="productReviews">
+                            <div class="row align-items-center">
+
+                                {% if user.is_authenticated %}
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <h4 class="mb-15">نظرت رو برامون بنویس</h4>
+                                            {{ comment_form }}
+                                        </div>
+
+
+                                        <button class="btn" type="submit">ارسال پیام</button>
                                     </div>
-                                    <div class="col-auto"><a href="#" class="review-item_report">گزارش به عنوان
-                                        نامناسب</a></div>
-                                </div>
-                                <div class="review-item_content">
-                                    <h4>توپ با کیفیت و خوب</h4>
-                                    <p>من اخیراً این توپ را خریداری کردم و این اولین توپ
-                                        است
-                                        توپی که من بر اساس کیفیت و مواد می خریدم ، من
-                                        همیشه در حال بازی توپ با دوست خود بودم و یکی از
-                                        آنها این را به من توصیه کرد ، برخی از بررسی های
-                                        آنلاین را بخوانید و تصمیم گرفتم آن را بخرم ، در
-                                        ابتدا توپ احساس چسبندگی می کند اما کیفیت خوب است
-                                        و دست نوشت نامه بسیار جذاب بود زیرا نشان می دهد
-                                        که سازندگان فصل در واقع چقدر به مشتریان خود
-                                        اهمیت می دهند.</p>
-                                </div>
+                                {% else %}
+                                    <h4 class="mb-15" >برای نظر دادن ابتدا باید <a style="text-decoration-line: underline" href="{% url 'accounts:register_view' %}">وارد شوید</a></h4>
+                                {% endif %}
                             </div>
-                            <div class="review-item">
-                                <div class="review-item_rating">
-                                    <i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i>
-                                </div>
-                                <div class="review-item_top row align-items-center">
-                                    <div class="col">
-                                        <h5 class="review-item_author">رضا افشار در 25
-                                            اسفند 1399</h5>
-                                    </div>
-                                    <div class="col-auto"><a href="#" class="review-item_report">گزارش به عنوان
-                                        نامناسب</a></div>
-                                </div>
-                                <div class="review-item_content">
-                                    <h4>توپ با کیفیت و خوب</h4>
-                                    <p>من اخیراً این توپ را خریداری کردم و این اولین توپ
-                                        است
-                                        توپی که من بر اساس کیفیت و مواد می خریدم ، من
-                                        همیشه در حال بازی توپ با دوست خود بودم و یکی از
-                                        آنها این را به من توصیه کرد ، برخی از بررسی های
-                                        آنلاین را بخوانید و تصمیم گرفتم آن را بخرم ، در
-                                        ابتدا توپ احساس چسبندگی می کند اما کیفیت خوب است
-                                        و دست نوشت نامه بسیار جذاب بود زیرا نشان می دهد
-                                        که سازندگان فصل در واقع چقدر به مشتریان خود
-                                        اهمیت می دهند.</p>
-                                </div>
+                            <br>
+
+
+
+                            <div id="productReviewsBottom">
+
+                                {% for com in comment %}
+                                    {% if com.is_active %}
+                                        <div class="review-item">
+                                            <hr>
+                                            <div class="review-item_rating">
+
+                                                <i class="icon-star-fill fill"></i>
+                                                <i class="icon-star-fill fill"></i>
+                                                <i class="icon-star-fill fill"></i>
+                                                <i class="icon-star-fill fill"></i>
+                                                <i class="icon-star-fill fill"></i>
+                                            </div>
+                                            <div class="review-item_top row align-items-center">
+                                                {% if com.user.first_name  %}
+                                                    <div class="col">
+                                                        <h5 class="review-item_author">نظر {{ com.user.first_name }} در مورد محصولمون
+                                                        </h5>
+
+
+                                                    </div>
+
+                                                {% else %}
+                                                    <div class="col">
+                                                        <h5 class="review-item_author">نظر ناشناس در مورد محصولمون</h5>
+
+                                                    </div>
+
+                                                {% endif %}
+                                                <div class="col-auto"><a href="#" class="review-item_report">گزارش به عنوان
+                                                    نامناسب</a></div>
+                                            </div>
+                                            <div class="review-item_content">
+                                                <h4>{{ com.rate}}</h4>
+                                                <p>{{ com.comment }}</p>
+                                                {% if com.is_reply %}
+                                                    <h6 style="color: royalblue"><br>پاسخ : {{ com.reply|safe }}</h6>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
                             </div>
-                            <div class="review-item">
-                                <div class="review-item_rating">
-                                    <i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i>
-                                </div>
-                                <div class="review-item_top row align-items-center">
-                                    <div class="col">
-                                        <h5 class="review-item_author">رضا افشار در 25
-                                            اسفند 1399</h5>
-                                    </div>
-                                    <div class="col-auto"><a href="#" class="review-item_report">گزارش به عنوان
-                                        نامناسب</a></div>
-                                </div>
-                                <div class="review-item_content">
-                                    <h4>توپ با کیفیت و خوب</h4>
-                                    <p>من اخیراً این توپ را خریداری کردم و این اولین توپ
-                                        است
-                                        توپی که من بر اساس کیفیت و مواد می خریدم ، من
-                                        همیشه در حال بازی توپ با دوست خود بودم و یکی از
-                                        آنها این را به من توصیه کرد ، برخی از بررسی های
-                                        آنلاین را بخوانید و تصمیم گرفتم آن را بخرم ، در
-                                        ابتدا توپ احساس چسبندگی می کند اما کیفیت خوب است
-                                        و دست نوشت نامه بسیار جذاب بود زیرا نشان می دهد
-                                        که سازندگان فصل در واقع چقدر به مشتریان خود
-                                        اهمیت می دهند.</p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="review-item_rating">
-                                    <i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i>
-                                </div>
-                                <div class="review-item_top row align-items-center">
-                                    <div class="col">
-                                        <h5 class="review-item_author">رضا افشار در 25
-                                            اسفند 1399</h5>
-                                    </div>
-                                    <div class="col-auto"><a href="#" class="review-item_report">گزارش به عنوان
-                                        نامناسب</a></div>
-                                </div>
-                                <div class="review-item_content">
-                                    <h4>توپ با کیفیت و خوب</h4>
-                                    <p>من اخیراً این توپ را خریداری کردم و این اولین توپ
-                                        است
-                                        توپی که من بر اساس کیفیت و مواد می خریدم ، من
-                                        همیشه در حال بازی توپ با دوست خود بودم و یکی از
-                                        آنها این را به من توصیه کرد ، برخی از بررسی های
-                                        آنلاین را بخوانید و تصمیم گرفتم آن را بخرم ، در
-                                        ابتدا توپ احساس چسبندگی می کند اما کیفیت خوب است
-                                        و دست نوشت نامه بسیار جذاب بود زیرا نشان می دهد
-                                        که سازندگان فصل در واقع چقدر به مشتریان خود
-                                        اهمیت می دهند.</p>
-                                </div>
-                            </div>
-                            <div class="review-item">
-                                <div class="review-item_rating">
-                                    <i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i
-                                        class="icon-star-fill fill"></i>
-                                </div>
-                                <div class="review-item_top row align-items-center">
-                                    <div class="col">
-                                        <h5 class="review-item_author">رضا افشار در 25
-                                            اسفند 1399</h5>
-                                    </div>
-                                    <div class="col-auto"><a href="#" class="review-item_report">گزارش به عنوان
-                                        نامناسب</a></div>
-                                </div>
-                                <div class="review-item_content">
-                                    <h4>توپ با کیفیت و خوب</h4>
-                                    <p>من اخیراً این توپ را خریداری کردم و این اولین توپ
-                                        است
-                                        توپی که من بر اساس کیفیت و مواد می خریدم ، من
-                                        همیشه در حال بازی توپ با دوست خود بودم و یکی از
-                                        آنها این را به من توصیه کرد ، برخی از بررسی های
-                                        آنلاین را بخوانید و تصمیم گرفتم آن را بخرم ، در
-                                        ابتدا توپ احساس چسبندگی می کند اما کیفیت خوب است
-                                        و دست نوشت نامه بسیار جذاب بود زیرا نشان می دهد
-                                        که سازندگان فصل در واقع چقدر به مشتریان خود
-                                        اهمیت می دهند.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    </form>
                 </div>
             </div>
         </div>
@@ -1929,12 +1792,12 @@
                                     <div class="foxic-loader"></div>
                                     <div class="prd-big-squared-labels">
                                         {% if tag.discount %}
-                                        <div class="label-sale"><span>{{ tag.discount }}%- <span class="sale-text">فروش
+                                            <div class="label-sale"><span>{{ tag.discount }}%- <span class="sale-text">فروش
 													ویژه</span></span>
-                                            <div class="countdown-circle">
+                                                <div class="countdown-circle">
 
+                                                </div>
                                             </div>
-                                        </div>
                                         {% endif %}
                                     </div>
                                 </a>

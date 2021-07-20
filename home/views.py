@@ -1,5 +1,5 @@
-from django.shortcuts import render , get_object_or_404
-from .models import *
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import MyUser, CommentForm, Comment, Category, Product, Variants, Images
 
 
 def home(request):
@@ -33,6 +33,9 @@ def all_product(request,slug=None):
 
 def product_detail(request,id=None,slug=None):
     product = get_object_or_404(Product,id=id,slug=slug)
+    images = Images.objects.filter(product_id=id)
+    comment_form = CommentForm()
+    comment = Comment.objects.filter(product_id=id)
     similar = product.tags.similar_objects()[:2]
     if product.status != 'None' :
         if request.method == 'POST':
@@ -47,13 +50,29 @@ def product_detail(request,id=None,slug=None):
             'product': product,
             'variant':variant,
             'variants':variants,
-            'similar':similar
+            'similar':similar,
+            'comment_form':comment_form,
+            'comment':comment,
+            'images':images
         }
         return render(request, 'home/detail.html', context)
     else:
 
         context={
             'product':product,
-            'similar': similar
+            'similar': similar,
+            'comment_form':comment_form,
+            'comment':comment,
+            'images': images
         }
         return render(request,'home/detail.html',context)
+
+
+def product_comment(request,id):
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            data = comment_form.cleaned_data
+            Comment.objects.create(comment=data['comment'],user_id=request.user.id,product_id=id)
+        return redirect(url)
