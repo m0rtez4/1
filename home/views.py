@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import MyUser, CommentForm, Comment, Category, Product, Variants, Images
-
+from .forms import SearchForm
+from django.db.models import Q
 
 def home(request):
     category = Category.objects.filter(sub_cat=False)
+    form = SearchForm()
     context ={
-        'category':category
+        'category':category,
+        'form':form
     }
     return render(request, 'home/home.html', context)
 
@@ -15,13 +18,15 @@ def home(request):
 
 def all_product(request,slug=None):
     products = Product.objects.all()
+    form = SearchForm()
     category =Category.objects.filter(sub_cat=False)
     if slug :
         data = get_object_or_404(Category,slug=slug)
         products = products.filter(category=data)
     context={
         'products':products,
-        'category':category
+        'category':category,
+        'form':form
 
     }
     return render(request, 'home/product.html', context)
@@ -76,3 +81,18 @@ def product_comment(request,id):
             data = comment_form.cleaned_data
             Comment.objects.create(comment=data['comment'],user_id=request.user.id,product_id=id)
         return redirect(url)
+
+
+
+def product_search(request):
+    products = Product.objects.all()
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data['search']
+            if data is not None :
+                products = products.filter(Q(name__iexact=data)|Q(name__icontains=data)|Q(category__name__icontains=data))
+            return render(request,'home/product.html',{'products':products,'form':form})
+    else:
+        form = SearchForm()
+        return render(request,'home/product.html',{'products':products,'form':form})

@@ -68,7 +68,8 @@
                                         class="icon-search"></i><span class="dropdn-link-txt">جستجو</span></a>
                                 <div class="dropdn-content">
                                     <div class="container">
-                                        <form method="get" action="#" class="search search-off-popular">
+                                        <form method="post" action="{% url 'home:product_search' %}" class="search search-off-popular">
+                                            {% csrf_token %}
                                             <input name="search" type="text" class="search-input input-empty"
                                                    placeholder="دنبال چه چیزی میگردید؟">
                                             <button type="submit" class="search-button"><i
@@ -302,7 +303,8 @@
                                             class="icon-search"></i><span class="dropdn-link-txt">جستجو</span></a>
                                     <div class="dropdn-content">
                                         <div class="container">
-                                            <form method="get" action="#" class="search search-off-popular">
+                                            <form method="post" action="{% url 'home:product_search' %}" class="search search-off-popular">
+                                                {% csrf_token %}
                                                 <input name="search" type="text" class="search-input input-empty"
                                                        placeholder="دنبال چه چیزی میگردید؟">
                                                 <button type="submit" class="search-button"><i
