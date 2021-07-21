@@ -91,7 +91,8 @@ def product_search(request):
         if form.is_valid():
             data = form.cleaned_data['search']
             if data is not None :
-                products = products.filter(Q(name__iexact=data)|Q(name__icontains=data)|Q(category__name__icontains=data))
+                lookup = Q(name__iexact=data)|Q(name__icontains=data)|Q(category__name__icontains=data)
+                products = products.filter(lookup,available=True).distinct()
             return render(request,'home/product.html',{'products':products,'form':form})
     else:
         form = SearchForm()
