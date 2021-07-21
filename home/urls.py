@@ -8,7 +8,8 @@ urlpatterns = [
     path('product/',views.all_product,name='product'),
     path('detail/<int:id>/<slug>/',views.product_detail,name ='detail'),
     path('category/<slug>/',views.all_product,name='category'),
-    path('comment/<int:id>/',views.product_comment,name='product_comment')
+    path('comment/<int:id>/',views.product_comment,name='product_comment'),
+    path('search/',views.product_search,name='product_search')
 
 
 ]
