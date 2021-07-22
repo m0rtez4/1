@@ -1,0 +1,658 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    سبد خرید
+{% endblock %}
+{% block content %}
+
+
+    <div class="page-content" style="min-height: 41.2px;">
+		<div class="holder breadcrumbs-wrap mt-0">
+			<div class="container">
+				<ul class="breadcrumbs">
+					<li><a href="index.html">خانه</a></li>
+					<li><span>سبد خرید</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="holder">
+			<div class="container">
+				<div class="page-title text-center">
+					<h1>سبد خرید</h1>
+				</div>
+				<div class="row">
+					<div class="col-lg-11 col-xl-13">
+						<div class="cart-table">
+							<div class="cart-table-prd cart-table-prd--head py-1 d-none d-md-flex">
+								<div class="cart-table-prd-image text-center">
+									تصویر
+								</div>
+								<div class="cart-table-prd-content-wrap">
+									<div class="cart-table-prd-info">نام</div>
+									<div class="cart-table-prd-qty">تعداد</div>
+									<div class="cart-table-prd-price">قیمت</div>
+									<div class="cart-table-prd-action">&nbsp;</div>
+								</div>
+							</div>
+							<div class="cart-table-prd">
+								<div class="cart-table-prd-image">
+									<a href="product.html" class="prd-img"><img class="fade-up lazyloaded" src="images/skins/fashion/products/product-01-1.webp" data-src="images/skins/fashion/products/product-01-1.webp" alt=""></a>
+								</div>
+								<div class="cart-table-prd-content-wrap">
+									<div class="cart-table-prd-info">
+										<div class="cart-table-prd-price">
+											<div class="price-old">200,000 تومان</div>
+											<div class="price-new">180,000 تومان</div>
+										</div>
+										<h2 class="cart-table-prd-name"><a href="product.html">شلوار چرمی</a>
+										</h2>
+									</div>
+									<div class="cart-table-prd-qty">
+										<div class="qty qty-changer">
+											<button class="decrease"></button>
+											<input type="text" class="qty-input" value="2" data-min="0" data-max="1000">
+											<button class="increase"></button>
+										</div>
+									</div>
+									<div class="cart-table-prd-price-total">
+										360,000 تومان
+									</div>
+								</div>
+								<div class="cart-table-prd-action">
+									<a href="#" class="cart-table-prd-remove" data-tooltip="Remove Product"><i class="icon-recycle"></i></a>
+								</div>
+							</div>
+							<div class="cart-table-prd">
+								<div class="cart-table-prd-image">
+									<a href="product.html" class="prd-img"><img class="fade-up lazyloaded" src="images/skins/fashion/products/product-16-1.webp" data-src="images/skins/fashion/products/product-16-1.webp" alt=""></a>
+								</div>
+								<div class="cart-table-prd-content-wrap">
+									<div class="cart-table-prd-info">
+										<div class="cart-table-prd-price">
+											<div class="price-new">220,000 تومان</div>
+										</div>
+										<h2 class="cart-table-prd-name"><a href="product.html">پیراهن معمولی</a>
+										</h2>
+									</div>
+									<div class="cart-table-prd-qty">
+										<div class="qty qty-changer">
+											<button class="decrease"></button>
+											<input type="text" class="qty-input" value="2" data-min="0" data-max="1000">
+											<button class="increase"></button>
+										</div>
+									</div>
+									<div class="cart-table-prd-price-total">
+										360,000 تومان
+									</div>
+								</div>
+								<div class="cart-table-prd-action">
+									<a href="#" class="cart-table-prd-remove" data-tooltip="Remove Product"><i class="icon-recycle"></i></a>
+								</div>
+							</div>
+							<div class="cart-table-prd">
+								<div class="cart-table-prd-image">
+									<a href="product.html" class="prd-img"><img class="fade-up lazyloaded" src="images/skins/fashion/products/product-02-1.webp" data-src="images/skins/fashion/products/product-02-1.webp" alt=""></a>
+								</div>
+								<div class="cart-table-prd-content-wrap">
+									<div class="cart-table-prd-info">
+										<div class="cart-table-prd-price">
+											<div class="price-new">75,000 تومان</div>
+										</div>
+										<h2 class="cart-table-prd-name"><a href="product.html">لباس کتان سایز بزرگ</a>
+										</h2>
+									</div>
+									<div class="cart-table-prd-qty">
+										<div class="qty qty-changer">
+											<button class="decrease"></button>
+											<input type="text" class="qty-input" value="2" data-min="0" data-max="1000">
+											<button class="increase"></button>
+										</div>
+									</div>
+									<div class="cart-table-prd-price-total">
+										360,000 تومان
+									</div>
+								</div>
+								<div class="cart-table-prd-action">
+									<a href="#" class="cart-table-prd-remove" data-tooltip="Remove Product"><i class="icon-recycle"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="text-center mt-1"><a href="#" class="btn btn--grey">پاک
+								کردن همه</a></div>
+						<div class="d-none d-lg-block">
+							<div class="mt-4"></div>
+							<div class="holder">
+								<div class="container">
+									<div class="title-wrap text-center">
+										<h2 class="h1-style">شاید شما بپسندید</h2>
+										<div class="carousel-arrows carousel-arrows--center"><button class="slick-prev slick-arrow slick-disabled" aria-label="Previous" type="button" aria-disabled="true" style="">Previous</button>
+										<button class="slick-next slick-arrow" aria-label="Next" type="button" aria-disabled="false" style="">Next</button></div>
+									</div>
+									<div class="prd-grid prd-carousel js-prd-carousel slick-arrows-aside-simple slick-arrows-mobile-lg data-to-show-4 data-to-show-md-3 data-to-show-sm-3 data-to-show-xs-2 slick-initialized slick-slider" data-slick="{&quot;slidesToShow&quot;: 4, &quot;slidesToScroll&quot;: 2, &quot;responsive&quot;: [{&quot;breakpoint&quot;: 992,&quot;settings&quot;: {&quot;slidesToShow&quot;: 3, &quot;slidesToScroll&quot;: 1}},{&quot;breakpoint&quot;: 768,&quot;settings&quot;: {&quot;slidesToShow&quot;: 2, &quot;slidesToScroll&quot;: 1}},{&quot;breakpoint&quot;: 480,&quot;settings&quot;: {&quot;slidesToShow&quot;: 2, &quot;slidesToScroll&quot;: 1}}]}">
+										<div class="slick-list"><div class="slick-track" style="opacity: 1; width: 755px;"><div class="prd prd--style2 prd-labels--max prd-labels-shadow slick-slide slick-current slick-active prd-w-xxs" data-slick-index="0" aria-hidden="false" tabindex="0" style="width: 121px;">
+											<div class="prd-inside">
+												<div class="prd-img-area">
+													<a href="product.html" class="prd-img image-hover-scale image-container" style="padding-bottom: 128.48%" tabindex="0">
+														<img src="images/skins/fashion/products/product-06-1.webp" data-src="images/skins/fashion/products/product-06-1.webp" alt="Midi Dress" class="js-prd-img fade-up ls-is-cached lazyloaded">
+														<div class="foxic-loader"></div>
+														<div class="prd-big-squared-labels">
+														</div>
+													</a>
+													<div class="prd-circle-labels">
+														<a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="0"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="0"><i class="icon-heart-hover"></i></a>
+														<a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html" tabindex="0"><i class="icon-eye"></i><span>مشاهده
+																سریع</span></a>
+														<div class="colorswatch-label colorswatch-label--variants js-prd-colorswatch">
+															<i class="icon-palette"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span></i>
+															<ul>
+																<li data-image="images/skins/fashion/products/product-06-1.webp">
+																	<a class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/colorswatch/color-grey.webp" alt=""></a></li>
+																<li data-image="images/skins/fashion/products/product-06-color-2.webp">
+																	<a class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/colorswatch/color-green.webp" alt=""></a></li>
+																<li data-image="images/skins/fashion/products/product-06-color-3.webp">
+																	<a class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/colorswatch/color-black.webp" alt=""></a></li>
+															</ul>
+														</div>
+													</div>
+													<ul class="list-options color-swatch">
+														<li data-image="images/skins/fashion/products/product-06-1.webp" class="active"><a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-06-1.webp" data-src="images/skins/fashion/products/product-06-1.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-06-2.webp">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-06-2.webp" data-src="images/skins/fashion/products/product-06-2.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-06-3.webp">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-06-3.webp" data-src="images/skins/fashion/products/product-06-3.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+													</ul>
+												</div>
+												<div class="prd-info">
+													<div class="prd-info-wrap">
+														<div class="prd-info-top">
+															<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+															</div>
+														</div>
+														<div class="prd-rating justify-content-center">
+															<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+														</div>
+														<div class="prd-tag"><a href="#" tabindex="0">سیکو</a></div>
+														<h2 class="prd-title"><a href="product.html" tabindex="0">لباس
+																میدی</a></h2>
+														<div class="prd-description">
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم، لورم ایپسوم متن
+															ساختگی با تولید سادگی نامفهوم،
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم
+														</div>
+														<div class="prd-action">
+															<form action="#">
+																<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;لباس میدی&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-06-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="0">افزودن
+																	به سبد خرید</button>
+															</form>
+														</div>
+													</div>
+													<div class="prd-hovers">
+														<div class="prd-circle-labels">
+															<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="0"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="0"><i class="icon-heart-hover"></i></a>
+															</div>
+															<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html" tabindex="0"><i class="icon-eye"></i><span>مشاهده
+																		سریع</span></a>
+															</div>
+														</div>
+														<div class="prd-price">
+															<div class="price-new">180,000
+																تومان</div>
+														</div>
+														<div class="prd-action">
+															<div class="prd-action-left">
+																<form action="#">
+																	<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;لباس میدی&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-06-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="0">افزودن
+																		به سبد خرید</button>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div><div class="prd prd--style2 prd-labels--max prd-labels-shadow slick-slide slick-active prd-w-xxs" data-slick-index="1" aria-hidden="false" tabindex="0" style="width: 121px;">
+											<div class="prd-inside">
+												<div class="prd-img-area">
+													<a href="product.html" class="prd-img image-hover-scale image-container" style="padding-bottom: 128.48%" tabindex="0">
+														<img src="images/skins/fashion/products/product-17-3.webp" data-src="images/skins/fashion/products/product-17-1.webp" alt="Stand Collar Shirt" class="js-prd-img fade-up ls-is-cached lazyloaded">
+														<div class="foxic-loader"></div>
+														<div class="prd-big-squared-labels">
+															<div class="label-sale">
+																<span>10%- <span class="sale-text">فروش
+																		ویژه</span></span>
+																<div class="countdown-circle">
+
+																</div>
+															</div>
+														</div>
+													</a>
+													<div class="prd-circle-labels">
+														<a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="0"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="0"><i class="icon-heart-hover"></i></a>
+														<a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html" tabindex="0"><i class="icon-eye"></i><span>مشاهده
+																سریع</span></a>
+													</div>
+													<ul class="list-options color-swatch">
+														<li data-image="images/skins/fashion/products/product-17-1.webp" class=""><a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-17-1.webp" data-src="images/skins/fashion/products/product-17-1.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-17-2.webp">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-17-2.webp" data-src="images/skins/fashion/products/product-17-2.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-17-3.webp" class="active loaded">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-17-3.webp" data-src="images/skins/fashion/products/product-17-3.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+													</ul>
+												</div>
+												<div class="prd-info">
+													<div class="prd-info-wrap">
+														<div class="prd-info-top">
+															<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+															</div>
+														</div>
+														<div class="prd-rating justify-content-center">
+															<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+														</div>
+														<div class="prd-tag"><a href="#" tabindex="0">فاکسیک</a></div>
+														<h2 class="prd-title"><a href="product.html" tabindex="0">پیراهن
+																یقه ایستاده</a></h2>
+														<div class="prd-description">
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم، لورم ایپسوم متن
+															ساختگی با تولید سادگی نامفهوم،
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم
+														</div>
+														<div class="prd-action">
+															<form action="#">
+																<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;پیراهن یقه ایستاده&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-17-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="0">افزودن
+																	به سبد خرید</button>
+															</form>
+														</div>
+													</div>
+													<div class="prd-hovers">
+														<div class="prd-circle-labels">
+															<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="0"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="0"><i class="icon-heart-hover"></i></a>
+															</div>
+															<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html" tabindex="0"><i class="icon-eye"></i><span>مشاهده
+																		سریع</span></a>
+															</div>
+														</div>
+														<div class="prd-price">
+															<div class="price-old">200,000
+																تومان</div>
+															<div class="price-new">180,000
+																تومان</div>
+														</div>
+														<div class="prd-action">
+															<div class="prd-action-left">
+																<form action="#">
+																	<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;پیراهن یقه ایستاده&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-17-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="0">افزودن
+																		به سبد خرید</button>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div><div class="prd prd--style2 prd-labels--max prd-labels-shadow slick-slide slick-active prd-w-xxs" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 121px;">
+											<div class="prd-inside">
+												<div class="prd-img-area">
+													<a href="product.html" class="prd-img image-hover-scale image-container" style="padding-bottom: 128.48%" tabindex="0">
+														<img src="images/skins/fashion/products/product-21-3.webp" data-src="images/skins/fashion/products/product-21-1.webp" alt="Genuine Leather" class="js-prd-img fade-up ls-is-cached lazyloaded">
+														<div class="foxic-loader"></div>
+														<div class="prd-big-squared-labels">
+															<div class="label-new">
+																<span>جدید</span></div>
+														</div>
+													</a>
+													<div class="prd-circle-labels">
+														<a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="0"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="0"><i class="icon-heart-hover"></i></a>
+														<a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html" tabindex="0"><i class="icon-eye"></i><span>مشاهده
+																سریع</span></a>
+													</div>
+													<ul class="list-options color-swatch">
+														<li data-image="images/skins/fashion/products/product-21-1.webp" class=""><a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-21-1.webp" data-src="images/skins/fashion/products/product-21-1.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-21-2.webp">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-21-2.webp" data-src="images/skins/fashion/products/product-21-2.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-21-3.webp" class="active loaded">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-21-3.webp" data-src="images/skins/fashion/products/product-21-3.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+													</ul>
+												</div>
+												<div class="prd-info">
+													<div class="prd-info-wrap">
+														<div class="prd-info-top">
+															<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+															</div>
+														</div>
+														<div class="prd-rating justify-content-center">
+															<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+														</div>
+														<div class="prd-tag"><a href="#" tabindex="0">فاکسیک</a></div>
+														<h2 class="prd-title"><a href="product.html" tabindex="0">ساعت بند
+																چرمی</a>
+														</h2>
+														<div class="prd-description">
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم، لورم ایپسوم متن
+															ساختگی با تولید سادگی نامفهوم،
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم
+														</div>
+														<div class="prd-action">
+															<form action="#">
+																<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;ساعت بند چرمی&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-21-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="0">افزودن
+																	به سبد خرید</button>
+															</form>
+														</div>
+													</div>
+													<div class="prd-hovers">
+														<div class="prd-circle-labels">
+															<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="0"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="0"><i class="icon-heart-hover"></i></a>
+															</div>
+															<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html" tabindex="0"><i class="icon-eye"></i><span>مشاهده
+																		سریع</span></a>
+															</div>
+														</div>
+														<div class="prd-price">
+															<div class="price-new">180,000
+																تومان</div>
+														</div>
+														<div class="prd-action">
+															<div class="prd-action-left">
+																<form action="#">
+																	<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;ساعت بند چرمی&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-21-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="0">افزودن
+																		به سبد خرید</button>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div><div class="prd prd--style2 prd-labels--max prd-labels-shadow slick-slide slick-active prd-w-xxs" data-slick-index="3" aria-hidden="false" tabindex="0" style="width: 121px;">
+											<div class="prd-inside">
+												<div class="prd-img-area">
+													<a href="product.html" class="prd-img image-hover-scale image-container" style="padding-bottom: 128.48%" tabindex="0">
+														<img src="images/skins/fashion/products/product-26-1.webp" data-src="images/skins/fashion/products/product-26-1.webp" alt="Pureboost Shoes" class="js-prd-img fade-up ls-is-cached lazyloaded">
+														<div class="foxic-loader"></div>
+														<div class="prd-big-squared-labels">
+														</div>
+													</a>
+													<div class="prd-circle-labels">
+														<a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="0"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="0"><i class="icon-heart-hover"></i></a>
+														<a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html" tabindex="0"><i class="icon-eye"></i><span>مشاهده
+																سریع</span></a>
+													</div>
+													<ul class="list-options color-swatch">
+														<li data-image="images/skins/fashion/products/product-26-1.webp" class="active"><a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-26-1.webp" data-src="images/skins/fashion/products/product-26-1.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-26-2.webp">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-26-2.webp" data-src="images/skins/fashion/products/product-26-2.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-26-3.webp">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="0"><img src="images/skins/fashion/products/product-26-3.webp" data-src="images/skins/fashion/products/product-26-3.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+													</ul>
+												</div>
+												<div class="prd-info">
+													<div class="prd-info-wrap">
+														<div class="prd-info-top">
+															<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+															</div>
+														</div>
+														<div class="prd-rating justify-content-center">
+															<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+														</div>
+														<div class="prd-tag"><a href="#" tabindex="0">فاکسیک</a></div>
+														<h2 class="prd-title"><a href="product.html" tabindex="0">کفش
+																مخصوص دویدن</a>
+														</h2>
+														<div class="prd-description">
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم، لورم ایپسوم متن
+															ساختگی با تولید سادگی نامفهوم،
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم
+														</div>
+														<div class="prd-action">
+															<form action="#">
+																<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;کتونی جدید&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-26-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="0">افزودن
+																	به سبد خرید</button>
+															</form>
+														</div>
+													</div>
+													<div class="prd-hovers">
+														<div class="prd-circle-labels">
+															<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="0"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="0"><i class="icon-heart-hover"></i></a>
+															</div>
+															<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html" tabindex="0"><i class="icon-eye"></i><span>مشاهده
+																		سریع</span></a>
+															</div>
+														</div>
+														<div class="prd-price">
+															<div class="price-new">180,000
+																تومان</div>
+														</div>
+														<div class="prd-action">
+															<div class="prd-action-left">
+																<form action="#">
+																	<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;کتونی جدید&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-26-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="0">افزودن
+																		به سبد خرید</button>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div><div class="prd prd--style2 prd-labels--max prd-labels-shadow slick-slide prd-w-xxs" data-slick-index="4" aria-hidden="true" tabindex="-1" style="width: 121px;">
+											<div class="prd-inside">
+												<div class="prd-img-area">
+													<a href="product.html" class="prd-img image-hover-scale image-container" style="padding-bottom: 128.48%" tabindex="-1">
+														<img src="images/skins/fashion/products/product-30-1.webp" data-src="images/skins/fashion/products/product-30-1.webp" alt="Multiple Pocket" class="js-prd-img fade-up ls-is-cached lazyloaded">
+														<div class="foxic-loader"></div>
+														<div class="prd-big-squared-labels">
+														</div>
+													</a>
+													<div class="prd-circle-labels">
+														<a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="-1"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="-1"><i class="icon-heart-hover"></i></a>
+														<a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html" tabindex="-1"><i class="icon-eye"></i><span>مشاهده
+																سریع</span></a>
+													</div>
+													<ul class="list-options color-swatch">
+														<li data-image="images/skins/fashion/products/product-30-1.webp" class="active"><a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="-1"><img src="images/skins/fashion/products/product-30-1.webp" data-src="images/skins/fashion/products/product-30-1.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-30-2.webp">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="-1"><img src="images/skins/fashion/products/product-30-2.webp" data-src="images/skins/fashion/products/product-30-2.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+														<li data-image="images/skins/fashion/products/product-30-3.webp">
+															<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ" tabindex="-1"><img src="images/skins/fashion/products/product-30-3.webp" data-src="images/skins/fashion/products/product-30-3.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a>
+														</li>
+													</ul>
+												</div>
+												<div class="prd-info">
+													<div class="prd-info-wrap">
+														<div class="prd-info-top">
+															<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+															</div>
+														</div>
+														<div class="prd-rating justify-content-center">
+															<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+														</div>
+														<div class="prd-tag"><a href="#" tabindex="-1">فاکسیک</a></div>
+														<h2 class="prd-title"><a href="product.html" tabindex="-1">کیف
+																کمری</a>
+														</h2>
+														<div class="prd-description">
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم، لورم ایپسوم متن
+															ساختگی با تولید سادگی نامفهوم،
+															لورم ایپسوم متن ساختگی با تولید
+															سادگی نامفهوم
+														</div>
+														<div class="prd-action">
+															<form action="#">
+																<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;کیف کمری چندمنظوره&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-30-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="-1">افزودن
+																	به سبد خرید</button>
+															</form>
+														</div>
+													</div>
+													<div class="prd-hovers">
+														<div class="prd-circle-labels">
+															<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی" tabindex="-1"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی" tabindex="-1"><i class="icon-heart-hover"></i></a>
+															</div>
+															<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html" tabindex="-1"><i class="icon-eye"></i><span>مشاهده
+																		سریع</span></a>
+															</div>
+														</div>
+														<div class="prd-price">
+															<div class="price-new">180,000
+																تومان</div>
+														</div>
+														<div class="prd-action">
+															<div class="prd-action-left">
+																<form action="#">
+																	<button class="btn js-prd-addtocart" data-product="{&quot;name&quot;: &quot;کیف کمری چندمنظوره&quot;, &quot;path&quot;:&quot;images/skins/fashion/products/product-30-1.webp&quot;, &quot;url&quot;:&quot;product.html&quot;, &quot;aspect_ratio&quot;:0.778}" tabindex="-1">افزودن
+																		به سبد خرید</button>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div></div></div>
+
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-7 col-xl-5 mt-3 mt-md-0">
+						<div class="cart-promo-banner">
+							<div class="cart-promo-banner-inside">
+								<div class="txt1">50% ذخیره</div>
+								<div class="txt2">فقط امروز!</div>
+							</div>
+						</div>
+						<div class="card-total">
+							<div class="text-left">
+								<button class="btn btn--grey"><span>به روز رسانی سبد
+										خرید</span><i class="icon-refresh"></i></button>
+							</div>
+							<div class="row d-flex">
+								<div class="col card-total-txt">جمع کل</div>
+								<div class="col-auto card-total-price text-right">475,000
+									تومان
+								</div>
+							</div>
+							<button class="btn btn--full btn--lg"><span>پرداخت</span></button>
+							<div class="card-text-info text-left">
+								<h5>ارسال استاندارد</h5>
+								<p><b>10 - 11 روز کاری</b><br>ارسال محصولات از تهران و بین
+									10 تا 11 روز کاری صورت می گیرد</p>
+							</div>
+						</div>
+						<div class="mt-2"></div>
+						<div class="panel-group panel-group--style1 prd-block_accordion" id="productAccordion">
+							<div class="panel">
+								<div class="panel-heading active">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#productAccordion" href="#collapse1">گزینه های حمل و نقل</a>
+										<span class="toggle-arrow"><span></span><span></span></span>
+									</h4>
+								</div>
+								<div id="collapse1" class="panel-collapse collapse show">
+									<div class="panel-body">
+										<label>کشور : </label>
+										<div class="form-group select-wrapper select-wrapper-sm">
+											<select class="form-control form-control--sm">
+												<option value="Iran">ایران
+												</option>
+												<option value="Canada">کانادا</option>
+												<option value="China">چین</option>
+												<option value="India">هند</option>
+												<option value="Italy">ایتالیا</option>
+												<option value="Mexico">مکزیک</option>
+											</select>
+										</div>
+										<label>استان : </label>
+										<div class="form-group select-wrapper select-wrapper-sm">
+											<select class="form-control form-control--sm">
+												<option value="AL">تهران</option>
+												<option value="AK">مشهد</option>
+												<option value="AZ">شیراز</option>
+												<option value="AR">تبریز</option>
+												<option value="CA">سمنان</option>
+												<option value="CO">کرمانشاه</option>
+												<option value="CT">ارومیه</option>
+												<option value="DE">کرمان</option>
+												<option value="DC">زاهدان</option>
+												<option value="FL">بوشهر</option>
+												<option value="GA">مازندران</option>
+												<option value="HI">گیلان</option>
+												<option value="ID">گرگان</option>
+												<option value="IL">قم</option>
+												<option value="IN">اصفهان</option>
+												<option value="IA">مرکزی</option>
+											</select>
+										</div>
+										<label>کد پستی : </label>
+										<div class="form-group">
+											<input type="text" class="form-control form-control--sm">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel">
+								<div class="panel-heading active">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#productAccordion" href="#collapse2">کد
+											تخفیف</a>
+										<span class="toggle-arrow"><span></span><span></span></span>
+									</h4>
+								</div>
+								<div id="collapse2" class="panel-collapse collapse show">
+									<div class="panel-body">
+										<p>کد تخفیف دارید؟ در کادر زیر کد تخفیف خود را وارد
+											کنید تا روی سبد خرید شما اعمال شود!</p>
+										<div class="form-inline mt-2">
+											<input type="text" class="form-control form-control--sm" placeholder="کد تخفیف شما">
+											<button type="submit" class="btn">تایید</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel">
+								<div class="panel-heading active">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#productAccordion" href="#collapse3">یادداشت برای فروشنده</a>
+										<span class="toggle-arrow"><span></span><span></span></span>
+									</h4>
+								</div>
+								<div id="collapse3" class="panel-collapse collapse show">
+									<div class="panel-body">
+										<textarea class="form-control form-control--sm textarea--height-100" placeholder="متن یادداشت"></textarea>
+										<div class="card-text-info mt-2">
+											<p>* پس انداز شامل تبلیغات ، کوپن و ارسال (در
+												صورت وجود)
+												است.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

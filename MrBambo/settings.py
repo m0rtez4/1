@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
     'ckeditor',
-    'taggit'
+    'taggit',
+    'cart.apps.CartConfig'
 ]
 
 MIDDLEWARE = [
