@@ -23,7 +23,8 @@ class Product(models.Model):
     VARIANT = (
         ('None','none'),
         ('Size','size'),
-        ('Color','color')
+        ('Color','color'),
+        ('Both','Both')
     )
     category = models.ManyToManyField(Category,blank=True)
     name = models.CharField(max_length=250)

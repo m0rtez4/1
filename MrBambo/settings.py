@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'ckeditor',
     'taggit',
-    'cart.apps.CartConfig'
+    'cart.apps.CartConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -72,10 +73,20 @@ WSGI_APPLICATION = 'MrBambo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django1',
+        'USER': 'postgres',
+        'PASSWORD': 'M@8663teza',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 

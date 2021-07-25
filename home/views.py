@@ -52,10 +52,14 @@ def product_detail(request,id=None,slug=None):
             var_id = request.POST.get('select')
             variants = Variants.objects.get(id=var_id)
             variant = Variants.objects.filter(product_variant_id=id)
+            colors = Variants.objects.filter(product_variant_id=id,size_variant_id=variants.size_variant_id)
+            size =Variants.objects.filter(product_variant_id=id).distinct('size_variant_id')
 
         else:
             variant = Variants.objects.filter(product_variant_id=id)
             variants = Variants.objects.get(id=variant[0].id)
+            colors = Variants.objects.filter(product_variant_id=id,size_variant_id=variants.size_variant_id)
+            size =Variants.objects.filter(product_variant_id=id).distinct('size_variant_id')
 
         context = {
             'product': product,
@@ -65,7 +69,9 @@ def product_detail(request,id=None,slug=None):
             'comment_form':comment_form,
             'comment':comment,
             'images':images,
-            'cart_form':cart_form
+            'cart_form':cart_form,
+            'colors':colors,
+            'size':size
         }
         return render(request, 'home/detail.html', context)
     else:

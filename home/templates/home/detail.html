@@ -1317,106 +1317,87 @@
 
 
 
-
+                    {% if product.status == 'Both' %}
                         <div class="order-0 order-md-100">
 
-                            <div class="prd-block_options">
-                                {% if product.status == 'Color' %}
-                                    <div class="prd-color swatches">
-                                        <div class="option-label">رنگ : </div>
-                                        <form action="" method="post">
-                                            {% csrf_token %}
-                                            {% for data in variant %}
 
-                                            <select class="form-control hidden single-option-selector-modalQuickView"
-                                                    id="{{ data.id }}" data-index="option1">
 
-                                                <option value="{{ data.size_variant.id }}" selected="selected">بژ</option>
 
-                                            </select>
-                                            <ul class="images-list js-size-list"
-                                                data-select-id="{{ data.id }}">
-                                                <li {% if variants.id == data.id %}class="active" {% endif %}>
-                                                    <a href="#" data-value="{{ data.size_variant.id }}" data-toggle="tooltip"
-                                                       data-placement="top" data-original-title="{{ data.size_variant }}"><span
-                                                            class="image-container image-container--product"><img
-                                                            src="images/skins/fashion/product-page/product-01.webp"
-                                                            alt=""></span></a>
-                                                <li>
-                                            </ul>
-                                            {% endfor %}
-                                        </form>
 
-                                    </div>
+									<div class="prd-block_options">
+										<div class="prd-color swatches">
+											<div class="option-label">رنگ : </div>
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                {% for data in colors %}
+											<select class="form-control hidden single-option-selector-modalQuickView" id="{{ data.color_variant_id }}" data-index="option1">
+												<input type="radio" name="select" {% if variants.id == data.id %} checked{% endif %} onchange="this.form.submit();">
+                                                <a href="">{{ data.color_variant }}</a>
+											</select>
+											<ul class="images-list js-size-list" data-select-id="{{ data.color_variant_id }}">
 
-                                {% elif product.status == 'Size' %}
-                                    <div class="prd-size swatches">
-                                        <div class="option-label">سایز : </div>
-                                    <form action="" method="post">
-                                            {% csrf_token %}
-                                            {% for data in variant %}
-                                        <select class="form-control hidden single-option-selector-modalQuickView"
-                                                id="SingleOptionSelector-1" data-index="option2">
+												<li  {% if variants.id == data.id %} class="active" {% endif %}  onchange="this.form.submit();">
 
-                                            <option value="{{ data.size_variant.id }}" selected="selected">
-                                                کوچک</option>
-
-                                        </select>
-                                        <ul class="size-list js-size-list" data-select-id="SingleOptionSelector-1">
-
-                                            <li {% if variants.id == data.id %} class="active" {% endif %}><a href="#" data-value="{{ data.size_variant.id }}"><span
-                                                    class="value">{{ data.size_variant }}</span></a>
-                                            </li>
-
-                                        </ul>
+													<a href="" data-value="{{ data.id }}" data-toggle="tooltip" data-placement="top" data-original-title="{{ data.color_variant }}"><span class="image-container image-container--product"><img src="{{ data.image.url}}" alt=""></span></a>
+												</li>
+											</ul>
                                                 {% endfor %}
-                                                    </form>
-                                    </div>
-                                {% endif %}
-                            </div>
+                                                </form>
+										</div>
+										<div class="prd-size swatches">
+											<div class="option-label">سایز : </div>
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                {% for data in size %}
+											<select class="form-control hidden single-option-selector-modalQuickView" id="{{ data.size_variant_id }}" data-index="option2">
+												<option value="{{ data.id }}"  {% if variants.id == data.id %} selected="selected" {% endif %}>
+													کوچک</option>
+											</select>
+											<ul class="size-list js-size-list" data-select-id="{{ data.size_variant_id }}">
+												<li {% if variants.id == data.id %}class="active" {% endif %} onchange="this.form.submit();"><a href="" data-value="{{ data.id }}"><span class="value">{{ data.size_variant }}</span></a>
+												</li>
+
+											</ul>
+                                                {% endfor %}
+                                                </form>
+										</div>
+									</div>
+
+
+
+									<div class="prd-block_actions prd-block_actions--wishlist">
+										<div class="prd-block_qty">
+											<div class="qty qty-changer">
+												<button class="decrease js-qty-button"></button>
+												<input type="number" class="qty-input" name="quantity" value="1" data-min="1" data-max="1000">
+												<button class="increase js-qty-button"></button>
+											</div>
+										</div>
+										<div class="btn-wrap">
+											<button class="btn btn--add-to-cart js-trigger-addtocart js-prd-addtocart" data-product="{&quot;name&quot;:  &quot;شلوار چرمی &quot;,  &quot;url &quot;: &quot;product.html&quot;,  &quot;path &quot;: &quot;images/skins/fashion/product-page/product-01.webp&quot;,  &quot;aspect_ratio &quot;: &quot;0.78&quot;}">افزودن
+												به سبد خرید</button>
+										</div>
+										<div class="btn-wishlist-wrap">
+											<a href="#" class="btn-add-to-wishlist ml-auto btn-add-to-wishlist--add js-add-wishlist" title="افزودن به لیست علاقه مندی"><i class="icon-heart-stroke"></i></a>
+											<a href="#" class="btn-add-to-wishlist ml-auto btn-add-to-wishlist--off js-remove-wishlist" title="حذف از لیست علاقه مندی"><i class="icon-heart-hover"></i></a>
+										</div>
+									</div>
 
 
 
 
 
-
-
-
-
-                            <div class="prd-block_actions prd-block_actions--wishlist">
-                                <div class="prd-block_qty">
-                                    <div class="qty qty-changer">
-                                        <button class="decrease js-qty-button"></button>
-                                        <input type="number" class="qty-input" name="quantity" value="1"
-                                               data-min="1" data-max="1000">
-                                        <button class="increase js-qty-button"></button>
-                                    </div>
-                                </div>
-                                <div class="btn-wrap">
-                                    <button class="btn btn--add-to-cart js-trigger-addtocart js-prd-addtocart"
-                                            data-product='{"name":  "شلوار چرمی ",  "url ": "product.html",  "path ": "images/skins/fashion/product-page/product-01.webp",  "aspect_ratio ": "0.78"}'>افزودن
-                                        به سبد خرید</button>
-                                </div>
-                                <div class="btn-wishlist-wrap">
-                                    <a href="#"
-                                       class="btn-add-to-wishlist ml-auto btn-add-to-wishlist--add js-add-wishlist"
-                                       title="افزودن به لیست علاقه مندی"><i class="icon-heart-stroke"></i></a>
-                                    <a href="#"
-                                       class="btn-add-to-wishlist ml-auto btn-add-to-wishlist--off js-remove-wishlist"
-                                       title="حذف از لیست علاقه مندی"><i class="icon-heart-hover"></i></a>
-                                </div>
-                            </div>
-
-                            <div class="prd-block_agreement prd-block_info_item order-0 order-md-100 text-right"
-                                 data-agree>
-                                <input id="agreementCheckboxProductPage" class="js-agreement-checkbox"
-                                       data-button=".shopify-payment-agree" name="agreementCheckboxProductPage"
-                                       type="checkbox">
-                                <label for="agreementCheckboxProductPage"><a href="#" data-fancybox
-                                                                             class="modal-info-link" data-src="#agreementInfo">من با قوانین و مقررات
+                            <div class="prd-block_agreement prd-block_info_item order-0 order-md-100 text-right" data-agree="">
+                                <input id="agreementCheckboxProductPage" class="js-agreement-checkbox" data-button=".shopify-payment-agree" name="agreementCheckboxProductPage" type="checkbox">
+                                <label for="agreementCheckboxProductPage"><a href="#" data-fancybox="" class="modal-info-link" data-src="#agreementInfo">من با قوانین و مقررات
                                     موافقت می کنم</a></label>
                             </div>
                         </div>
+                    {% endif %}
+
+
+
+
                         <div class="prd-block_info_item">
                             <ul class="prd-block_links list-unstyled">
                                 <li><i class="icon-size-guide"></i><a href="#" data-fancybox class="modal-info-link"
