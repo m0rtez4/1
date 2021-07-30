@@ -3,3 +3,4 @@ from accounts.models import MyUser
 
 admin.site.register(MyUser)
 
+

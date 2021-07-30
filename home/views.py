@@ -2,6 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import MyUser, CommentForm, Comment, Category, Product, Variants, Images
 from .forms import SearchForm
 from django.db.models import Q
+from cart.models import *
+
+
+
+
 
 def home(request):
     category = Category.objects.filter(sub_cat=False)
@@ -37,19 +42,25 @@ def all_product(request,slug=None):
 
 
 def product_detail(request,id=None,slug=None):
-    product = get_object_or_404(Product,id=id,slug=slug)
+    product = get_object_or_404(Product,id=id)
     images = Images.objects.filter(product_id=id)
     comment_form = CommentForm()
     comment = Comment.objects.filter(product_id=id)
+    cart_form = CartForm()
     similar = product.tags.similar_objects()[:2]
     if product.status != 'None' :
         if request.method == 'POST':
-            variant = Variants.objects.filter(product_variant_id=id)
             var_id = request.POST.get('select')
             variants = Variants.objects.get(id=var_id)
+            variant = Variants.objects.filter(product_variant_id=id)
+            colors = Variants.objects.filter(product_variant_id=id,size_variant_id=variants.size_variant_id)
+            size =Variants.objects.filter(product_variant_id=id).distinct('size_variant_id')
+
         else:
             variant = Variants.objects.filter(product_variant_id=id)
             variants = Variants.objects.get(id=variant[0].id)
+            colors = Variants.objects.filter(product_variant_id=id,size_variant_id=variants.size_variant_id)
+            size =Variants.objects.filter(product_variant_id=id).distinct('size_variant_id')
 
         context = {
             'product': product,
@@ -58,7 +69,10 @@ def product_detail(request,id=None,slug=None):
             'similar':similar,
             'comment_form':comment_form,
             'comment':comment,
-            'images':images
+            'images':images,
+            'cart_form':cart_form,
+            'colors':colors,
+            'size':size
         }
         return render(request, 'home/detail.html', context)
     else:
@@ -68,7 +82,8 @@ def product_detail(request,id=None,slug=None):
             'similar': similar,
             'comment_form':comment_form,
             'comment':comment,
-            'images': images
+            'images': images,
+            'cart_form':cart_form
         }
         return render(request,'home/detail.html',context)
 

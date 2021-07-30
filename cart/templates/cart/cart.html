@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    سبد خرید
+{% endblock %}
+{% block content %}
+
+
+    <div class="page-content" style="min-height: 41.2px;">
+        <div class="holder breadcrumbs-wrap mt-0">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'home:home' %}">خانه</a></li>
+                    <li><span>سبد خرید</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="holder">
+            <div class="container">
+                <div class="page-title text-center">
+                    <h1>سبد خرید</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-11 col-xl-13">
+                        <div class="cart-table">
+                            <div class="cart-table-prd cart-table-prd--head py-1 d-none d-md-flex">
+                                <div class="cart-table-prd-image text-center">
+                                    تصویر
+                                </div>
+                                <div class="cart-table-prd-content-wrap">
+                                    <div class="cart-table-prd-info">نام</div>
+                                    <div class="cart-table-prd-qty">تعداد</div>
+                                    <div class="cart-table-prd-price">قیمت</div>
+                                    <div class="cart-table-prd-action">&nbsp;</div>
+                                </div>
+                            </div>
+                            {% for c in cart %}
+                            <div class="cart-table-prd">
+
+                                <div class="cart-table-prd-image">
+                                    <a href="product.html" class="prd-img"><img class="fade-up lazyloaded" src="{{ c.product.image.url }}" data-src="images/skins/fashion/products/product-01-1.webp" alt=""></a>
+                                </div>
+                                <div class="cart-table-prd-content-wrap">
+                                    <div class="cart-table-prd-info">
+
+                                        <h2 class="cart-table-prd-name"><a href="product.html">{{ c.product.name}}</a></h2>
+                                        {% if c.variant %}
+                                        <hr>
+                                        {% endif %}
+                                        {% if c.variant.size_variant %}
+                                        <h7 class="cart-table-prd-name">سایز {{ c.variant.size_variant.name }}</h7>
+                                        {% endif %}
+                                        {% if c.variant.color_variant %}
+                                        <h7 class="cart-table-prd-name">رنگ {{ c.variant.color_variant.name }}</h7>
+                                        {% endif %}
+                                    </div>
+                                    <div class="cart-table-prd-qty">
+                                        <div class="qty qty-changer">
+                                            <button class="decrease"></button>
+                                            <input type="text" class="qty-input" value="{{ c.quantity }}" data-min="0" data-max="1000">
+                                            <button class="increase"></button>
+                                        </div>
+                                    </div>
+                                    {% if c.product.status != 'None' %}
+
+                                    <div class="cart-table-prd-price-total">
+                                        {% widthratio c.variant.total_price 1 c.quantity %} تومان
+                                    </div>
+                                    {% else %}
+                                        <div class="cart-table-prd-price-total">
+                                        {% widthratio c.product.total_price 1 c.quantity %} تومان
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="cart-table-prd-action">
+                                    <a href="{% url 'cart:remove_cart' c.id %}" class="cart-table-prd-remove" data-tooltip="Remove Product"><i class="icon-recycle"></i></a>
+                                </div>
+
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="text-center mt-1"><a href="{% url 'cart:remove_cart_all' %}" class="btn btn--grey">پاک
+                            کردن همه</a></div>
+
+                    </div>
+
+                    <div class="col-lg-7 col-xl-5 mt-3 mt-md-0">
+                        <br><br>
+                        <div class="cart-promo-banner">
+                            <div class="cart-promo-banner-inside">
+                                <div class="txt1">50% ذخیره</div>
+                                <div class="txt2">فقط امروز!</div>
+                            </div>
+                        </div>
+                        <div class="card-total">
+                            <div class="text-left">
+                                <button class="btn btn--grey"><span>به روز رسانی سبد
+										خرید</span><i class="icon-refresh"></i></button>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="col card-total-txt">جمع کل</div>
+                                <div class="col-auto card-total-price text-right">{{ total}}
+                                    تومان
+                                </div>
+                            </div>
+                            <button class="btn btn--full btn--lg"><span>پرداخت</span></button>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
