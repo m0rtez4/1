@@ -7,6 +7,7 @@ from cart.models import *
 
 
 
+
 def home(request):
     category = Category.objects.filter(sub_cat=False)
     form = SearchForm()

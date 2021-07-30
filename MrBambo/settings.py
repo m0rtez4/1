@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'taggit',
     'cart.apps.CartConfig',
+    'order.apps.OrderConfig',
 
 ]
 
