@@ -35,48 +35,47 @@
                                 </div>
                             </div>
                             {% for c in cart %}
-                            <div class="cart-table-prd">
+                                <div class="cart-table-prd">
 
-                                <div class="cart-table-prd-image">
-                                    <a href="product.html" class="prd-img"><img class="fade-up lazyloaded" src="{{ c.product.image.url }}" data-src="images/skins/fashion/products/product-01-1.webp" alt=""></a>
-                                </div>
-                                <div class="cart-table-prd-content-wrap">
-                                    <div class="cart-table-prd-info">
-
-                                        <h2 class="cart-table-prd-name"><a href="product.html">{{ c.product.name}}</a></h2>
-                                        {% if c.variant %}
-                                        <hr>
-                                        {% endif %}
-                                        {% if c.variant.size_variant %}
-                                        <h7 class="cart-table-prd-name">سایز {{ c.variant.size_variant.name }}</h7>
-                                        {% endif %}
-                                        {% if c.variant.color_variant %}
-                                        <h7 class="cart-table-prd-name">رنگ {{ c.variant.color_variant.name }}</h7>
-                                        {% endif %}
+                                    <div class="cart-table-prd-image">
+                                        <a href="product.html" class="prd-img"><img class="fade-up lazyloaded" src="{{ c.product.image.url }}" data-src="images/skins/fashion/products/product-01-1.webp" alt=""></a>
                                     </div>
-                                    <div class="cart-table-prd-qty">
-                                        <div class="qty qty-changer">
-                                            <button class="decrease"></button>
-                                            <input type="text" class="qty-input" value="{{ c.quantity }}" data-min="0" data-max="1000">
-                                            <button class="increase"></button>
+                                    <div class="cart-table-prd-content-wrap">
+                                        <div class="cart-table-prd-info">
+
+                                            <h2 class="cart-table-prd-name"><a href="product.html">{{ c.product.name}}</a></h2>
+                                            {% if c.variant %}
+                                                <hr>
+                                            {% endif %}
+                                            {% if c.variant.size_variant %}
+                                                <h7 class="cart-table-prd-name">سایز {{ c.variant.size_variant.name }}</h7>
+                                            {% endif %}
+                                            {% if c.variant.color_variant %}
+                                                <h7 class="cart-table-prd-name">رنگ {{ c.variant.color_variant.name }}</h7>
+                                            {% endif %}
                                         </div>
+                                        <div class="cart-table-prd-qty">
+                                            <div class="qty qty-changer">
+                                                <button class="decrease"></button>
+                                                <input type="text" class="qty-input" value="{{ c.quantity }}" data-min="0" data-max="1000">
+                                                <button class="increase"></button>
+                                            </div>
+                                        </div>
+                                        {% if c.product.status != 'None' %}
+                                            <div class="cart-table-prd-price-total">
+                                                {% widthratio c.variant.total_price 1 c.quantity %} تومان
+                                            </div>
+                                        {% else %}
+                                            <div class="cart-table-prd-price-total">
+                                                {% widthratio c.product.total_price 1 c.quantity %} تومان
+                                            </div>
+                                        {% endif %}
                                     </div>
-                                    {% if c.product.status != 'None' %}
+                                    <div class="cart-table-prd-action">
+                                        <a href="{% url 'cart:remove_cart' c.id %}" class="cart-table-prd-remove" data-tooltip="Remove Product"><i class="icon-recycle"></i></a>
+                                    </div>
 
-                                    <div class="cart-table-prd-price-total">
-                                        {% widthratio c.variant.total_price 1 c.quantity %} تومان
-                                    </div>
-                                    {% else %}
-                                        <div class="cart-table-prd-price-total">
-                                        {% widthratio c.product.total_price 1 c.quantity %} تومان
-                                    </div>
-                                    {% endif %}
                                 </div>
-                                <div class="cart-table-prd-action">
-                                    <a href="{% url 'cart:remove_cart' c.id %}" class="cart-table-prd-remove" data-tooltip="Remove Product"><i class="icon-recycle"></i></a>
-                                </div>
-
-                            </div>
                             {% endfor %}
 
                         </div>
@@ -104,7 +103,8 @@
                                     تومان
                                 </div>
                             </div>
-                            <button class="btn btn--full btn--lg"><span>پرداخت</span></button>
+                            <a href="{% url 'cart:cart' %}">
+                                <button class="btn btn--full btn--lg"><span>پرداخت</span></button></a>
 
                         </div>
 

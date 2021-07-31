@@ -14,7 +14,7 @@ class Order(models.Model):
     f_name = models.CharField(max_length=300)
     l_name = models.CharField(max_length=300)
     address = models.CharField(max_length=1000)
-    phone = models.CharField(max_length=11,unique=True)
+    phone = models.CharField(max_length=11)
     postal_code2 = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
@@ -30,6 +30,12 @@ class ItemOrder(models.Model):
 
     def __str__(self):
         return self.user.mobile
+
+    def size(self):
+        return self.variant.size_variant.name
+
+    def color(self):
+        return self.variant.color_variant.name
 
 
 
