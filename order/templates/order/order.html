@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    سبد خرید
+{% endblock %}
+{% block content %}
+
+
+
+
+
+
+    <div class="page-content" style="min-height: 41.2px;">
+        <div class="holder breadcrumbs-wrap mt-0">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">خانه</a></li>
+                    <li><span>پرداخت</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="holder">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-18 pl-lg-8 mt-2 mt-md-0">
+                        <div class="cart-total text-center">
+                            <h1> جمع کل :  {{ order.get_price }} تومان</h1>
+                        </div>
+                        <div class="mt-2"></div>
+                        <div class="card align-items-center  col-md-18 col-lg-18 text-center  ">
+
+                            <div class="card-body col-lg-8 col-md-10">
+
+                                <h3>کد تخفیف</h3>
+                                <p>در صورت داشتن کد تخفیف ، آن را وارد کنید !</p>
+                                <form action="{% url 'order:coupon' order.id %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-inline mt-2">
+
+                                        <input type="text"  name="code" class="form-control form-control--sm" placeholder="کد تخفیف شما">
+                                        <button type="submit" class="btn">تایید</button>
+
+                                    </div>
+                                </form>
+                                <div class="mt-2"></div>
+                                {% include 'messages.html' %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
