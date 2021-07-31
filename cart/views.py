@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from home.models import Product
 from .models import *
 from django.contrib.auth.decorators import login_required
+from order.models import OrderForm
 
 
 
@@ -18,6 +19,27 @@ def cart_detail(request):
         'total':total
     }
     return render(request,'cart/cart.html',context)
+
+
+
+def cart(request):
+    cart = Cart.objects.filter(user_id=request.user.id)
+    form = OrderForm()
+    user = request.user
+    total = 0
+    for p in cart:
+        if p.product.status != 'None':
+            total += p.variant.total_price * p.quantity
+        else:
+            total += p.product.total_price * p.quantity
+    context = {
+        'cart': cart,
+        'total': total,
+        'form':form,
+        'user':user
+    }
+    return render(request,'cart/cart2.html',context)
+
 
 @login_required(login_url='accounts:register_view')
 def add_cart(request,id):
