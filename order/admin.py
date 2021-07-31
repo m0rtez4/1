@@ -7,7 +7,7 @@ class ItemInline(admin.TabularInline):
     readonly_fields = ['user','product','variant','size','color','quantity']
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user','f_name','l_name','address','phone','postal_code2','paid']
+    list_display = ['user','f_name','l_name','address','phone','postal_code2','paid','detail']
     inlines = [ItemInline]
 
 

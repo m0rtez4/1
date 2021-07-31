@@ -16,6 +16,7 @@ class Order(models.Model):
     address = models.CharField(max_length=1000)
     phone = models.CharField(max_length=11)
     postal_code2 = models.PositiveIntegerField(blank=True, null=True)
+    detail = models.TextField(blank=True,null=True)
 
     def __str__(self):
         return self.user.mobile
@@ -42,4 +43,4 @@ class ItemOrder(models.Model):
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['f_name','l_name','phone','address','postal_code2']
+        fields = ['f_name','l_name','phone','address','postal_code2','detail']
