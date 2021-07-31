@@ -16,9 +16,28 @@ class Order(models.Model):
     address = models.CharField(max_length=1000)
     phone = models.CharField(max_length=11)
     postal_code2 = models.PositiveIntegerField(blank=True, null=True)
+    detail = models.TextField(blank=True,null=True)
+    discount = models.PositiveIntegerField(blank=True,null=True)
 
     def __str__(self):
         return self.user.mobile
+
+    def get_price(self):
+        total = sum(i.price() for i in self.order_item.all())
+        if self.discount:
+            discount_price = (self.discount / 100) * total
+            return int(total - discount_price)
+        return total
+
+
+
+
+
+
+
+
+
+
 
 class ItemOrder(models.Model):
     order = models.ForeignKey(Order,on_delete=models.CASCADE,related_name='order_item')
@@ -37,9 +56,27 @@ class ItemOrder(models.Model):
     def color(self):
         return self.variant.color_variant.name
 
+    def price(self):
+        if self.product.status != 'None':
+            return self.variant.total_price * self.quantity
+        else:
+            return self.product.total_price * self.quantity
+
+
 
 
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['f_name','l_name','phone','address','postal_code2']
+        fields = ['f_name','l_name','phone','address','postal_code2','detail']
+
+
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=100,unique=True)
+    active = models.BooleanField(default=False)
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    discount = models.IntegerField()
+
+

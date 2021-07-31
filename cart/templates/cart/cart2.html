@@ -44,91 +44,97 @@
                         </div>
                         <form action="{% url 'order:order_create' %}" method="post">
                             {% csrf_token %}
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="step1">
-                                <div class="tab-pane-inside">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="step1">
+                                    <div class="tab-pane-inside">
 
-                                    <div class="row mt-2">
-                                        <div class="col-sm-9">
-                                            <label>نام : </label>
-                                            <div class="form-group">
-                                                <input type="text" value="{{ user.first_name }}" name="f_name" class="form-control form-control--sm">
+                                        <div class="row mt-2">
+                                            <div class="col-sm-9">
+                                                <label>نام : </label>
+                                                <div class="form-group">
+                                                    <input type="text" value="{{ user.first_name }}" name="f_name" class="form-control form-control--sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <label>نام خانوادگی : </label>
+                                                <div class="form-group">
+                                                    <input type="text"  value="{{ user.last_name }}" name="l_name" class="form-control form-control--sm">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <label>نام خانوادگی : </label>
-                                            <div class="form-group">
-                                                <input type="text"  value="{{ user.last_name }}" name="l_name" class="form-control form-control--sm">
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <label>موبایل : </label>
-                                            <div class="form-group">
-                                                <input type="number" name="phone" value="{{ user.mobile }}" class="form-control form-control--sm">
+                                        <div class="row">
+                                            <div class="col-sm-9">
+                                                <label>موبایل : </label>
+                                                <div class="form-group">
+                                                    <input type="number" name="phone" value="{{ user.mobile }}" class="form-control form-control--sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <label>کد پستی : </label>
+                                                <div class="form-group">
+                                                    <input type="number" name="postal_code2" value="{{ user.postal_code }}" class="form-control form-control--sm">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <label>کد پستی : </label>
-                                            <div class="form-group">
-                                                <input type="number" name="postal_code2" value="{{ user.postal_code }}" class="form-control form-control--sm">
-                                            </div>
+                                        <div class="mt-2"></div>
+                                        <label>آدرس 1 : </label>
+                                        <div class="form-group">
+                                            <input type="text" name="address" value="{{ user.address }}" class="form-control form-control--sm">
+                                        </div>
+                                        <div class="mt-2"></div>
+                                        <label>دیدگاه سفارش : </label>
+                                        <div class="form-group">
+
+                                            <textarea class="form-control form-control--sm textarea--height-100" name="detail" placeholder="متن دیدگاه شما در اینجا"></textarea>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="button" class="btn btn-sm step-next">ادامه</button>
                                         </div>
                                     </div>
-                                    <div class="mt-2"></div>
-                                    <label>آدرس 1 : </label>
-                                    <div class="form-group">
-                                        <input type="text" name="address" value="{{ user.address }}" class="form-control form-control--sm">
+                                </div>
+                                <div class="tab-pane fade" id="step3">
+                                    <div class="tab-pane-inside">
+                                        <div class="clearfix">
+                                            <input id="formcheckoutRadio1" value="1" name="radio1" type="radio" class="radio" checked="checked">
+                                            <label for="formcheckoutRadio1">پست پیشتاز پرداخت آنلاین :
+                                                15,000
+                                                تومان (3-5 روز)</label>
+                                        </div>
+                                        <div class="clearfix">
+                                            <input id="formcheckoutRadio2" value="2" name="radio1" type="radio" class="radio">
+                                            <label for="formcheckoutRadio2">پست معمولی تسویه درب منزل : نرخ متغیر
+                                                (5-7 روز)</label>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="button" class="btn btn-sm step-next ">ادامه</button>
+                                        </div>
+
                                     </div>
-                                    <div class="text-right">
-                                        <button type="button" class="btn btn-sm step-next">ادامه</button>
+                                </div>
+                                <div class="tab-pane fade" id="step4">
+                                    <div class="tab-pane-inside">
+
+
+                                        <div class="clearfix">
+                                            <input id="formcheckoutRadio4" value="3" name="radio2" type="radio" class="radio" checked="checked">
+                                            <label for="formcheckoutRadio4">پرداخت درب منزل</label>
+
+                                        </div>
+
+                                        <div class="clearfix">
+                                            <input id="formcheckoutRadio5" value="4" name="radio2" type="radio" class="radio">
+                                            <label for="formcheckoutRadio5">زرین پال</label>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="clearfix mt-1 mt-md-2">
+                                        <button type="submit" class="btn btn--lg w-100">پرداخت
+                                            سفارش</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="step3">
-                                <div class="tab-pane-inside">
-                                    <div class="clearfix">
-                                        <input id="formcheckoutRadio1" value="1" name="radio1" type="radio" class="radio" checked="checked">
-                                        <label for="formcheckoutRadio1">پست پیشتاز پرداخت آنلاین :
-                                            15,000
-                                            تومان (3-5 روز)</label>
-                                    </div>
-                                    <div class="clearfix">
-                                        <input id="formcheckoutRadio2" value="2" name="radio1" type="radio" class="radio">
-                                        <label for="formcheckoutRadio2">پست معمولی تسویه درب منزل : نرخ متغیر
-                                             (5-7 روز)</label>
-                                    </div>
-                                    <div class="text-right">
-                                        <button type="button" class="btn btn-sm step-next ">ادامه</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="step4">
-                                <div class="tab-pane-inside">
-
-
-                                    <div class="clearfix">
-                                        <input id="formcheckoutRadio4" value="3" name="radio2" type="radio" class="radio" checked="checked">
-                                        <label for="formcheckoutRadio4">پرداخت درب منزل</label>
-                                        
-                                    </div>
-
-                                    <div class="clearfix">
-                                        <input id="formcheckoutRadio5" value="4" name="radio2" type="radio" class="radio">
-                                        <label for="formcheckoutRadio5">زرین پال</label>
-                                    </div>
-
-
-                                </div>
-                                <div class="clearfix mt-1 mt-md-2">
-                                    <button type="submit" class="btn btn--lg w-100">پرداخت
-                                        سفارش</button>
-                                </div>
-                            </div>
-                        </div>
                         </form>
                     </div>
                     <div class="col-md-8 pl-lg-8 mt-2 mt-md-0">
@@ -202,17 +208,7 @@
                             <span>جمع کل</span>
                             <span class="card-total-price">{{ total}} تومان</span>
                         </div>
-                        <div class="mt-2"></div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h3>دیدگاه سفارش</h3>
-                                <textarea class="form-control form-control--sm textarea--height-100" placeholder="متن دیدگاه شما در اینجا"></textarea>
-                                <div class="card-text-info mt-2">
-                                    <p>* پس انداز شامل تبلیغات ، کوپن و ارسال (در صورت وجود)
-                                        است.</p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
