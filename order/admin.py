@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django_jalali.admin.filters import JDateFieldListFilter
 
 
 class ItemInline(admin.TabularInline):
@@ -13,6 +14,9 @@ class OrderAdmin(admin.ModelAdmin):
 
 class CouponAdmin(admin.ModelAdmin):
     list_display = ['code','start','end','discount','active']
+    list_filter = (
+        ('code', JDateFieldListFilter),
+    )
 
 
 

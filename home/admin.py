@@ -1,6 +1,9 @@
 from django.contrib import admin
 from  .models import *
 import admin_thumbnails
+from django_jalali.admin.filters import JDateFieldListFilter
+
+
 
 class ProductVariantInlines(admin.TabularInline):
     model = Variants
@@ -12,7 +15,7 @@ class ImageInlines(admin.TabularInline):
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name','create','update','image','sub_category')
-    list_filter = ('create',)
+    list_filter = (('create', JDateFieldListFilter),)
     prepopulated_fields = {
         'slug':('name',)
     }

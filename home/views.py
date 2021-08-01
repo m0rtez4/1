@@ -133,3 +133,17 @@ def favourite_product(request,id,slug):
         is_favourite = True
 
     return redirect(url)
+
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        lastName = request.POST['lastName']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        message = request.POST['message']
+
+    context={
+
+    }
+    return render(request,'home/contact.html',context)

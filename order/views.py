@@ -5,20 +5,19 @@ from .forms import CouponForm
 from django.views.decorators.http import require_POST
 from django.utils import timezone
 from django.contrib import messages
+import jdatetime
 
 def order_detail(request,order_id):
     order = Order.objects.get(id=order_id)
     item = ItemOrder.objects.filter(order_id=order_id)
     item1 = ItemOrder.objects.filter(order_id=order_id).first()
     form = CouponForm()
-    order1= order.id + 1000
 
     context = {
         'order':order,
         'form':form,
         'item':item,
         'item1':item1,
-        'order1':order1
     }
     return render(request,'order/order.html',context)
 
@@ -42,7 +41,7 @@ def order_create(request):
 @require_POST
 def coupon_order(request,order_id):
     form = CouponForm(request.POST)
-    time = timezone.now()
+    time = jdatetime.datetime.now()
     if form.is_valid():
         code = form.cleaned_data['code']
         try:
