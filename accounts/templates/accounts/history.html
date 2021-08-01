@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    آدرس
+{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+
+
+        <div class="page-content" style="min-height: 41.2px;">
+		<div class="holder breadcrumbs-wrap mt-0">
+			<div class="container">
+				<ul class="breadcrumbs">
+					<li><a href="index.html">خانه</a></li>
+					<li><span>حساب کاربری من</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="holder">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 aside aside--left">
+						<div class="list-group">
+							<a href="{% url 'accounts:profile' %}" class="list-group-item">جزئیات حساب کاربری</a>
+							<a href="{% url 'accounts:address' %}" class="list-group-item">آدرس های من</a>
+							<a href="{% url 'accounts:favourite' %}" class="list-group-item">لیست علاقه مندی</a>
+							<a href="{% url 'accounts:history' %}" class="list-group-item active">تاریخچه سفارشات من</a>
+							<a href="#" class="list-group-item disabled">نظرات من</a>
+							<a href="#" class="list-group-item disabled">برچسب های ذخیره شده من</a>
+							<a href="#" class="list-group-item disabled">لیست مقایسه محصولات من</a>
+						</div>
+					</div>
+					<div class="col-md-14 aside">
+						<h1 class="mb-3">تاریخچه سفارشات</h1>
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped table-order-history">
+								<thead>
+									<tr>
+										<th scope="col"># </th>
+										<th scope="col">شماره سفارش</th>
+										<th scope="col">تاریخ سفارش </th>
+										<th scope="col">وضعیت</th>
+										<th scope="col">جمع قیمت</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i in data1 %}
+									<tr>
+										<td>2</td>
+										<td><b>189067</b> <a href="{% url 'order:order_detail' i.id %}" class="ml-1">مشاهده جزئیات</a></td>
+										<td>{{ i.create }}</td>
+
+										<td>ارسال شده</td>
+										<td><span class="color">{{ i.get_price }} تومان</span></td>
+										<td><a href="#" class="btn btn--grey btn--sm">سفارش مجدد</a></td>
+									</tr>
+                                    {% endfor %}
+
+								</tbody>
+							</table>
+						</div>
+						<div class="text-right mt-2">
+							<a href="#" class="btn btn--alt">پاک کردن تاریخچه</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+    {% else %}
+        no
+    {% endif %}
+{% endblock %}

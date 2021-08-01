@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.urls import reverse
 from ckeditor.fields import RichTextField
@@ -5,6 +6,7 @@ from taggit.managers import TaggableManager
 from django import forms
 
 from accounts.models import MyUser
+
 
 
 class Category(models.Model):
@@ -42,6 +44,7 @@ class Product(models.Model):
     slug = models.SlugField(allow_unicode=True, unique=True, null=True)
     status = models.CharField(null=True,blank=True,max_length=200,choices=VARIANT)
     tags = TaggableManager(blank=True)
+    favourite = models.ManyToManyField(MyUser,blank=True,related_name='fa_user')
 
 
     def get_absolute_url(self):

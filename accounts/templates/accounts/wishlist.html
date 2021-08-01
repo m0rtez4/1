@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    آدرس
+{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+
+
+
+        <div class="page-content" style="min-height: 41.2px;">
+            <div class="holder breadcrumbs-wrap mt-0">
+                <div class="container">
+                    <ul class="breadcrumbs">
+                        <li><a href="index.html">خانه</a></li>
+                        <li><span>حساب کاربری من</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="holder">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 aside aside--left">
+                            <div class="list-group">
+                                <a href="{% url 'accounts:profile' %}" class="list-group-item">جزئیات
+                                    حساب کاربری</a>
+                                <a href="{% url 'accounts:address' %}" class="list-group-item">آدرس
+                                    های من</a>
+                                <a href="{% url 'accounts:favourite' %}" class="list-group-item active">لیست علاقه مندی</a>
+                                <a href="{% url 'accounts:history' %}" class="list-group-item">تاریخچه
+                                    سفارشات من</a>
+                                <a href="#" class="list-group-item disabled">نظرات من</a>
+                                <a href="#" class="list-group-item disabled">برچسب های ذخیره شده
+                                    من</a>
+                                <a href="#" class="list-group-item disabled">لیست مقایسه محصولات
+                                    من</a>
+                            </div>
+                        </div>
+                        <div class="col-md-14 aside">
+                            <h1 class="mb-3">لیست علاقه مندی</h1>
+                            <div class="empty-wishlist js-empty-wishlist text-center py-3 py-sm-5 d-none" style="opacity: 0;">
+                                <h3>لیست علاقه مندی شما خالی است!</h3>
+                                <div class="mt-5">
+                                    <a href="index.html" class="btn">ادامه خرید</a>
+                                </div>
+                            </div>
+                            <div class="prd-grid-wrap position-relative">
+                                <div class="prd-grid prd-grid--wishlist data-to-show-3 data-to-show-lg-3 data-to-show-md-2 data-to-show-sm-2 data-to-show-xs-1">
+                                    {% for i in product1 %}
+                                        <div class="prd prd--in-wishlist prd--style2 prd-labels--max prd-labels-shadow prd-w-lg" style="">
+                                            <div class="prd-inside">
+                                                <div class="prd-img-area">
+                                                    <a href="product.html" class="prd-img image-hover-scale image-container" style="padding-bottom: 128.48%">
+                                                        <img src="{{ i.image.url}}" data-src="{{ i.image.url}}" alt="{{ i.name}}" class="js-prd-img fade-up lazyloaded">
+                                                        <div class="foxic-loader"></div>
+                                                        <div class="prd-big-squared-labels">
+                                                        </div>
+                                                    </a>
+                                                    <div class="prd-circle-labels">
+                                                        {% if is_favourite %}
+                                                        <a href="{% url 'home:favourite' i.id i.slug %}" class="circle-label-compare circle-label-wishlist--off " title="حذف از لیست علاقه مندی"><i class="icon-recycle"></i></a>
+                                                        {% endif %}
+                                                        <a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>مشاهده
+														سریع</span></a>
+                                                    </div>
+                                                    <ul class="list-options color-swatch">
+                                                        <li data-image="images/skins/fashion/products/product-25-1.webp" class="active"><a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ"><img src="images/skins/fashion/products/product-25-1.webp" data-src="images/skins/fashion/products/product-25-1.webp" class="fade-up ls-is-cached lazyloaded" alt="Color Name"></a></li>
+                                                        <li data-image="images/skins/fashion/products/product-25-2.webp">
+                                                            <a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ"><img src="images/skins/fashion/products/product-25-2.webp" data-src="images/skins/fashion/products/product-25-2.webp" class="fade-up lazyloaded" alt="Color Name"></a></li>
+                                                        <li data-image="images/skins/fashion/products/product-25-3.webp">
+                                                            <a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="" data-original-title="نام رنگ"><img src="images/skins/fashion/products/product-25-3.webp" data-src="images/skins/fashion/products/product-25-3.webp" class="fade-up lazyloaded" alt="Color Name"></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="prd-info">
+                                                    <div class="prd-info-wrap">
+                                                        <div class="prd-info-top">
+                                                            <div class="prd-tag"><a href="#">فاکسیک</a></div>
+                                                        </div>
+                                                        <div class="prd-rating justify-content-center">
+                                                            <i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+                                                        </div>
+                                                        <div class="prd-tag"><a href="#">{{ i.category.first }}</a>
+                                                        </div>
+                                                        <h2 class="prd-title"><a href="{{ i.get_absolute_url }}">{{ i.name}}</a>
+                                                        </h2>
+                                                        <div class="prd-description">
+                                                            {{ i.information1}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="prd-hovers">
+                                                        <div class="prd-circle-labels">
+                                                            <div>
+                                                                {% if is_favourite %}
+                                                                <a href="{% url 'home:favourite' i.id i.slug%}" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="افزودن به لیست علاقه مندی">
+                                                                    <i class="icon-heart-stroke"></i>
+                                                                </a>
+                                                                {% else %}
+                                                                <a href="{% url 'home:favourite' i.id i.slug%}" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="حذف از لیست علاقه مندی">
+                                                                    <i class="icon-heart-hover"></i>
+                                                                </a>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div><a href="#" class="circle-label-qview prd-hide-mobile js-prd-quickview" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>مشاهده
+																سریع</span></a></div>
+                                                        </div>
+                                                        <div class="prd-price">
+                                                            {% if i.discount %}
+                                                                <div class="price-old">{{ i.unit_price}} تومان
+                                                                </div>
+                                                            {% endif %}
+                                                            <div class="price-new">{{ i.total_price}} تومان
+                                                            </div>
+                                                        </div>
+                                                        <div class="prd-action">
+                                                            <div class="prd-action-left">
+                                                                <form action="{{i.get_absolute_url}}">
+                                                                    <button class="btn">مشاهده
+                                                                        اطلاعات کامل</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    {% else %}
+        no
+    {% endif %}
+{% endblock %}

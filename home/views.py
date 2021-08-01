@@ -24,6 +24,7 @@ def home(request):
 def all_product(request,slug=None):
     products = Product.objects.all()
     form = SearchForm()
+
     category =Category.objects.filter(sub_cat=False)
     if slug :
         data = get_object_or_404(Category,slug=slug)
@@ -47,6 +48,9 @@ def product_detail(request,id=None,slug=None):
     comment_form = CommentForm()
     comment = Comment.objects.filter(product_id=id)
     cart_form = CartForm()
+    is_favourite = False
+    if product.favourite.filter(id=request.user.id).exists():
+        is_favourite = True
     similar = product.tags.similar_objects()[:2]
     if product.status != 'None' :
         if request.method == 'POST':
@@ -72,7 +76,8 @@ def product_detail(request,id=None,slug=None):
             'images':images,
             'cart_form':cart_form,
             'colors':colors,
-            'size':size
+            'size':size,
+            'is_favourite': is_favourite
         }
         return render(request, 'home/detail.html', context)
     else:
@@ -83,7 +88,8 @@ def product_detail(request,id=None,slug=None):
             'comment_form':comment_form,
             'comment':comment,
             'images': images,
-            'cart_form':cart_form
+            'cart_form':cart_form,
+            'is_favourite': is_favourite
         }
         return render(request,'home/detail.html',context)
 
@@ -112,3 +118,18 @@ def product_search(request):
     else:
         form = SearchForm()
         return render(request,'home/product.html',{'products':products,'form':form})
+
+
+
+def favourite_product(request,id,slug):
+    url = request.META.get('HTTP_REFERER')
+    product = Product.objects.get(id=id,slug=slug)
+    is_favourite = False
+    if product.favourite.filter(id=request.user.id).exists():
+        product.favourite.remove(request.user)
+        is_favourite = False
+    else:
+        product.favourite.add(request.user)
+        is_favourite = True
+
+    return redirect(url)
