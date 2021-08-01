@@ -8,11 +8,15 @@ from django.contrib import messages
 
 def order_detail(request,order_id):
     order = Order.objects.get(id=order_id)
+    item = ItemOrder.objects.filter(order_id=order_id)
+    item1 = ItemOrder.objects.filter(order_id=order_id).first()
     form = CouponForm()
 
     context = {
         'order':order,
-        'form':form
+        'form':form,
+        'item':item,
+        'item1':item1,
     }
     return render(request,'order/order.html',context)
 
