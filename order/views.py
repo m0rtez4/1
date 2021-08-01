@@ -11,12 +11,14 @@ def order_detail(request,order_id):
     item = ItemOrder.objects.filter(order_id=order_id)
     item1 = ItemOrder.objects.filter(order_id=order_id).first()
     form = CouponForm()
+    order1= order.id + 1000
 
     context = {
         'order':order,
         'form':form,
         'item':item,
         'item1':item1,
+        'order1':order1
     }
     return render(request,'order/order.html',context)
 
@@ -29,6 +31,10 @@ def order_create(request):
             cart = Cart.objects.filter(user_id=request.user.id)
             for c in cart:
                 ItemOrder.objects.create(order_id=order.id,user_id=request.user.id,product_id=c.product_id,variant_id=c.variant_id,quantity=c.quantity)
+
+
+
+
 
             return redirect('order:order_detail',order.id)
 

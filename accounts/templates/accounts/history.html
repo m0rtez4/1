@@ -41,7 +41,7 @@
 										<th scope="col">تاریخ سفارش </th>
 										<th scope="col">وضعیت</th>
 										<th scope="col">جمع قیمت</th>
-										<th scope="col"></th>
+										<th scope="col"> کد رهگیری مرسوله</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -51,9 +51,9 @@
 										<td><b>189067</b> <a href="{% url 'order:order_detail' i.id %}" class="ml-1">مشاهده جزئیات</a></td>
 										<td>{{ i.create }}</td>
 
-										<td>ارسال شده</td>
+										<td>{{ i.send}}</td>
 										<td><span class="color">{{ i.get_price }} تومان</span></td>
-										<td><a href="#" class="btn btn--grey btn--sm">سفارش مجدد</a></td>
+										<td class="text-center"><b>{% if i.code != None %}{{ i.code }}{% endif %}</b></td>
 									</tr>
                                     {% endfor %}
 

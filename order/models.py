@@ -8,6 +8,10 @@ from django.forms import ModelForm
 
 
 class Order(models.Model):
+    SHOT = (
+        ('در حال پردازش','در حال پردازش'),
+        ('ارسال شده','ارسال شده')
+    )
     user = models.ForeignKey(MyUser,on_delete=models.CASCADE)
     create = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
@@ -18,6 +22,8 @@ class Order(models.Model):
     postal_code2 = models.PositiveIntegerField(blank=True, null=True)
     detail = models.TextField(blank=True,null=True)
     discount = models.PositiveIntegerField(blank=True,null=True)
+    send = models.CharField(max_length=30,choices=SHOT,default='در حال پردازش' )
+    code = models.CharField(max_length=100,blank=True,null=True)
 
     def __str__(self):
         return self.user.mobile
@@ -28,6 +34,8 @@ class Order(models.Model):
             discount_price = (self.discount / 100) * total
             return int(total - discount_price)
         return total
+
+
 
 
 
