@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.forms import ModelForm
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from taggit.managers import TaggableManager
@@ -164,3 +165,20 @@ class Images(models.Model):
     class Meta:
         verbose_name = 'عکس'
         verbose_name_plural = 'عکس ها'
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100,verbose_name='نام کاربر')
+    lastName = models.CharField(max_length=100,verbose_name='نام فامیلی کاربر')
+    email = models.CharField(max_length=100,verbose_name='ایمیل کاربر')
+    phone = models.CharField(max_length=100,verbose_name='شماره تماس کاربر')
+    message = models.TextField(max_length=1000,verbose_name='پیام کاربر')
+
+    class Meta:
+        verbose_name = 'تماس با ما'
+        verbose_name_plural = 'تماس با ما'
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name','lastName','email','phone','message']

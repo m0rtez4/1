@@ -136,14 +136,21 @@ def favourite_product(request,id,slug):
 
 
 def contact(request):
-    if request.method == 'POST':
-        name = request.POST['name']
-        lastName = request.POST['lastName']
-        email = request.POST['email']
-        phone = request.POST['phone']
-        message = request.POST['message']
 
-    context={
+    contact_form = ContactForm()
 
+    context = {
+        'contact_form':contact_form
     }
     return render(request,'home/contact.html',context)
+
+def contact_create(request):
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            Contact.objects.create(name=data['name'], lastName=data['lastName'],
+                                   email=data['email'], phone=data['phone'],
+                                   message=data['message'])
+        return redirect(url)

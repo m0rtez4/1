@@ -11,7 +11,8 @@ urlpatterns = [
     path('comment/<int:id>/',views.product_comment,name='product_comment'),
     path('search/',views.product_search,name='product_search'),
     path('favourite/<int:id>/<slug>/',views.favourite_product,name='favourite'),
-    path('contact/',views.contact,name='contact')
+    path('contact/',views.contact,name='contact'),
+    path('contact/create/',views.contact_create,name='contact_create'),
 
 
 ]
