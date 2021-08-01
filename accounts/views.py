@@ -1,7 +1,9 @@
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from order.models import ItemOrder, Order
+from home.models import Product
 from . import forms
 from django.contrib.auth.models import User
 from . import helper
@@ -110,3 +112,27 @@ def address(request):
 
 
 
+def favourite(request):
+    user = MyUser.objects.get(id=request.user.id)
+    product1 = user.fa_user.all()
+    is_favourite = False
+    if product1.filter(id=request.user.id).exists():
+        is_favourite = True
+
+    context ={
+        'product1':product1,
+        'is_favourite':is_favourite,
+
+    }
+    return render(request,'accounts/wishlist.html',context)
+
+
+def history(request):
+    data = ItemOrder.objects.filter(user_id= request.user.id)
+    data1 = Order.objects.filter(user_id=request.user.id)
+    context={
+        'data':data,
+        'data1':data1
+
+    }
+    return render(request,'accounts/history.html',context)

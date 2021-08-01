@@ -23,9 +23,9 @@
                                 <a href="account-details.html" class="list-group-item active">جزئیات حساب کاربری</a>
                                 <a href="{% url 'accounts:address' %}" class="list-group-item">آدرس
                                     های من</a>
-                                <a href="account-wishlist.html" class="list-group-item">لیست
+                                <a href="{% url 'accounts:favourite' %}" class="list-group-item">لیست
                                     علاقه مندی</a>
-                                <a href="account-history.html" class="list-group-item">تاریخچه
+                                <a href="{% url 'accounts:history' %}" class="list-group-item">تاریخچه
                                     سفارشات من</a>
                                 <a href="#" class="list-group-item disabled">نظرات من</a>
                                 <a href="#" class="list-group-item disabled">برچسب های ذخیره شده
