@@ -5,6 +5,8 @@ from django.db.models.signals import post_save
 class AccountsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'accounts'
+    verbose_name = 'حساب های کاربری'
+
 
     def ready(self):
         from . import signals

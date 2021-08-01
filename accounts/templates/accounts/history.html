@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load jformat %}
 {% block title %}
     آدرس
 {% endblock %}
@@ -49,9 +50,12 @@
 									<tr>
 										<td>{{ forloop.counter }}</td>
 										<td><b>189067</b> <a href="{% url 'order:order_detail' i.id %}" class="ml-1">مشاهده جزئیات</a></td>
-										<td>{{ i.create }}</td>
-
+										<td>{{ i.create|jformat:"%H:%M -- %d / %m / %Y " }}</td>
+                                        {% if i.paid != 'a' %}
 										<td>{{ i.send}}</td>
+                                        {% else %}
+                                            <td>پرداخت نشده</td>
+                                        {% endif %}
 										<td><span class="color">{{ i.get_price }} تومان</span></td>
 										<td class="text-center"><b>{% if i.code != None %}{{ i.code }}{% endif %}</b></td>
 									</tr>
@@ -59,9 +63,6 @@
 
 								</tbody>
 							</table>
-						</div>
-						<div class="text-right mt-2">
-							<a href="#" class="btn btn--alt">پاک کردن تاریخچه</a>
 						</div>
 					</div>
 				</div>
