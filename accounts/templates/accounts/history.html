@@ -47,7 +47,7 @@
 								<tbody>
 									{% for i in data1 %}
 									<tr>
-										<td>2</td>
+										<td>{{ forloop.counter }}</td>
 										<td><b>189067</b> <a href="{% url 'order:order_detail' i.id %}" class="ml-1">مشاهده جزئیات</a></td>
 										<td>{{ i.create }}</td>
 

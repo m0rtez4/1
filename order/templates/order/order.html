@@ -23,9 +23,132 @@
         <div class="holder">
             <div class="container">
                 <div class="row">
+                    <div class="col-md-9">
+                        <div class="panel-group panel-group--style1" id="checkoutAccordion">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#step1" class="collapsed" aria-expanded="false"> سبد خرید</a>
+                                        <span class="toggle-arrow"><span></span><span></span></span>
+                                    </h4>
+                                </div>
+                                <div id="step1" data-parent="#checkoutAccordion" class="panel-collapse collapse" style="">
+                                    <div class="panel-body">
+                                        <div class="panel-body-inside">
+                                            <div class="cart-table-prd cart-table-prd--head py-1 d-none d-md-flex">
 
+                                                <div class="cart-table-prd-content-wrap">
+                                                    <div class="cart-table-prd-info">نام</div>
+                                                    <div class="cart-table-prd-qty">تعداد</div>
+                                                    <div class="cart-table-prd-price">قیمت</div>
+                                                </div>
+                                            </div>
+
+                                            {% for c in item %}
+                                                <div class="cart-table-prd">
+                                                    <div class="cart-table-prd-content-wrap">
+                                                        <div class="cart-table-prd-info">
+                                                            <h2 class="cart-table-prd-name"><h6>{{ c.product.name}}</h6>
+                                                            </h2>
+                                                            {% if c.variant %}
+                                                                <hr>
+                                                            {% endif %}
+                                                            {% if c.variant.size_variant %}
+                                                                <h7 class="cart-table-prd-name">سایز {{ c.variant.size_variant.name }}</h7>
+                                                            {% endif %}
+                                                            {% if c.variant.color_variant %}
+                                                                <h7 class="cart-table-prd-name " >رنگ {{ c.variant.color_variant.name }}</h7>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="cart-table-prd-qty">
+                                                            <div class="qty qty-changer">
+                                                                <input type="text" class="qty-input disabled" value="{{ c.quantity }}" data-min="0" data-max="1000">
+                                                            </div>
+                                                        </div>
+                                                        {% if c.product.status != 'None' %}
+                                                            <div class="cart-table-prd-price-total">
+                                                                {% widthratio c.variant.total_price 1 c.quantity %} تومان
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="cart-table-prd-price-total">
+                                                                {% widthratio c.product.total_price 1 c.quantity %} تومان
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                            <div class="mt-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="panel-group panel-group--style1" id="checkoutAccordion">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#step1"> آدرس
+                                            صورتحساب</a>
+                                        <span class="toggle-arrow"><span></span><span></span></span>
+                                    </h4>
+                                </div>
+                                <div id="step1" data-parent="#checkoutAccordion" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="panel-body-inside">
+                                            <div class="row mt-2">
+                                                <div class="col-sm-9">
+                                                    <label>نام : </label>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control form-control--sm" readonly value="{{ item1.order.f_name }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <label>نام خانوادگی : </label>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control form-control--sm" readonly value="{{ item1.order.l_name }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2"></div>
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <label>شماره تماس : </label>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control form-control--sm" readonly value="{{ item1.order.phone }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-9">
+                                                    <label>کد پستی : </label>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control form-control--sm" readonly value="{{ item1.order.postal_code2 }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2"></div>
+                                            <label>آدرس  : </label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control--sm" readonly value="{{ item1.order.address }}">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="mt-2"></div>
+                </div>
+                <div class="mt-2"></div>
+
+                <div class="row">
                     <div class="col-md-18 pl-lg-8 mt-2 mt-md-0">
                         <div class="cart-total text-center">
+                            <div class="mt-2"></div>
                             <h1> جمع کل :  {{ order.get_price }} تومان</h1>
                         </div>
                         <div class="mt-2"></div>
