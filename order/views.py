@@ -6,7 +6,9 @@ from django.views.decorators.http import require_POST
 from django.utils import timezone
 from django.contrib import messages
 import jdatetime
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='accounts:register_view')
 def order_detail(request,order_id):
     order = Order.objects.get(id=order_id)
     item = ItemOrder.objects.filter(order_id=order_id)
@@ -21,12 +23,15 @@ def order_detail(request,order_id):
     }
     return render(request,'order/order.html',context)
 
+
+@login_required(login_url='accounts:register_view')
 def order_create(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            order = Order.objects.create(user_id=request.user.id,f_name=data['f_name'],l_name=data['l_name'],address=data['address'],phone=data['phone'],postal_code2=data['postal_code2'],detail=data['detail'])
+            radio = request.POST.get('radio2')
+            order = Order.objects.create(user_id=request.user.id,f_name=data['f_name'],l_name=data['l_name'],address=data['address'],phone=data['phone'],postal_code2=data['postal_code2'],detail=data['detail'],radio2=radio)
             cart = Cart.objects.filter(user_id=request.user.id)
             for c in cart:
                 ItemOrder.objects.create(order_id=order.id,user_id=request.user.id,product_id=c.product_id,variant_id=c.variant_id,quantity=c.quantity)

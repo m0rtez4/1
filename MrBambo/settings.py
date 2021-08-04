@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'taggit',
     'cart.apps.CartConfig',
     'order.apps.OrderConfig',
-    'django_jalali'
+    'django_jalali',
+    'django_filters'
 
 ]
 

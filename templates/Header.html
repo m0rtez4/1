@@ -35,25 +35,45 @@
 									</div>
 								</div>
 							</div>
+                            {% if user.is_authenticated %}
 							<div class="dropdn dropdn_wishlist">
-								<a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link ">
+								<a href="{% url 'accounts:favourite' %}" class="dropdn-link only-icon wishlist-link ">
 									<i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه مندی</span><span
-										class="wishlist-qty">3</span>
+										class="wishlist-qty">{{ product1.count }}</span>
 								</a>
 							</div>
+                            {% else %}
+                                <div class="dropdn dropdn_wishlist">
+								<a href="{% url 'accounts:register_view' %}" class="dropdn-link only-icon wishlist-link ">
+									<i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه مندی</span><span
+										class="wishlist-qty">0</span>
+								</a>
+							</div>
+                            {% endif %}
 							<div class="dropdn dropdn_account dropdn_fullheight">
 								<a href="#" class="dropdn-link js-dropdn-link js-dropdn-link only-icon"
 									data-panel="#dropdnAccount"><i class="icon-user"></i><span
 										class="dropdn-link-txt">حساب کاربری</span></a>
 							</div>
+                        {% if user.is_authenticated %}
 							<div class="dropdn dropdn_fullheight minicart">
 								<a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon"
 									data-panel="#dropdnMinicart">
 									<i class="icon-basket"></i>
-									<span class="minicart-qty">3</span>
-									<span class="minicart-total hide-mobile">340,000 تومان</span>
+									<span class="minicart-qty">{{ cart.count }}</span>
+									<span class="minicart-total hide-mobile">{{ total}} تومان</span>
 								</a>
 							</div>
+                        {% else %}
+                            <div class="dropdn dropdn_fullheight minicart">
+								<a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon"
+									data-panel="#dropdnMinicart">
+									<i class="icon-basket"></i>
+									<span class="minicart-qty">0</span>
+									<span class="minicart-total hide-mobile">وارد شوید</span>
+								</a>
+							</div>
+                            {% endif %}
 						</div>
 					</div>
 				</div>
@@ -556,9 +576,9 @@
 									</div>
 								</div>
 								<div class="dropdn dropdn_wishlist">
-									<a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link ">
+									<a href="{% url 'accounts:favourite' %}" class="dropdn-link only-icon wishlist-link ">
 										<i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه
-											مندی</span><span class="wishlist-qty">3</span>
+											مندی</span><span class="wishlist-qty">{{ product1.count }}</span>
 									</a>
 								</div>
 								<div class="hdr_container_mobile show-mobile">

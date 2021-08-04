@@ -1,41 +1,101 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import MyUser, CommentForm, Comment, Category, Product, Variants, Images
 from .forms import SearchForm
 from django.db.models import Q
 from cart.models import *
-
+from django.core.paginator import Paginator
+from .filters import ProductFilter
 
 
 
 
 def home(request):
-    category = Category.objects.filter(sub_cat=False)
-    form = SearchForm()
-    context ={
-        'category':category,
-        'form':form
-    }
-    return render(request, 'home/home.html', context)
+    try:
+        user = MyUser.objects.get(id=request.user.id)
+        product1 = user.fa_user.all()
+        cart = Cart.objects.filter(user_id=request.user.id)
+        category = Category.objects.filter(sub_cat=False)
+        form = SearchForm()
+        total = 0
+        for p in cart:
+            if p.product.status != 'None':
+                total += p.variant.total_price * p.quantity
+            else:
+                total += p.product.total_price * p.quantity
+        context = {
+            'category': category,
+            'form': form,
+            'product1': product1,
+            'cart': cart,
+            'total': total
+        }
+        return render(request, 'home/home.html', context)
+
+    except:
+
+        category = Category.objects.filter(sub_cat=False)
+        form = SearchForm()
+        context ={
+            'category':category,
+            'form':form,
+        }
+        return render(request, 'home/home.html', context)
 
 
 
 
 
 def all_product(request,slug=None):
-    products = Product.objects.all()
-    form = SearchForm()
 
-    category =Category.objects.filter(sub_cat=False)
-    if slug :
-        data = get_object_or_404(Category,slug=slug)
-        products = products.filter(category=data)
-    context={
-        'products':products,
-        'category':category,
-        'form':form
+    try:
+        user = MyUser.objects.get(id=request.user.id)
+        product1 = user.fa_user.all()
+        products = Product.objects.all()
+        filter = ProductFilter(request.GET,queryset=products)
+        products = filter.qs
+        paginator = Paginator(products,3)
+        page_num = request.GET.get('page')
+        page_obj = paginator.get_page(page_num)
 
-    }
-    return render(request, 'home/product.html', context)
+        form = SearchForm()
+
+        category =Category.objects.filter(sub_cat=False)
+        if slug :
+            data = get_object_or_404(Category,slug=slug)
+            products = products.filter(category=data)
+        context={
+            'products':page_obj,
+            'category':category,
+            'form':form,
+            'product1': product1,
+            'filter':filter
+
+        }
+        return render(request, 'home/product.html', context)
+    except :
+        products = Product.objects.all()
+        filter = ProductFilter(request.GET, queryset=products)
+        products = filter.qs
+        paginator = Paginator(products, 3)
+        page_num = request.GET.get('page')
+        page_obj = paginator.get_page(page_num)
+
+        form = SearchForm()
+
+        category = Category.objects.filter(sub_cat=False)
+        if slug:
+            data = get_object_or_404(Category, slug=slug)
+            products = products.filter(category=data)
+        context = {
+            'products': page_obj,
+            'category': category,
+            'form': form,
+            'filter': filter
+
+
+        }
+        return render(request, 'home/product.html', context)
 
 
 
@@ -154,3 +214,5 @@ def contact_create(request):
                                    email=data['email'], phone=data['phone'],
                                    message=data['message'])
         return redirect(url)
+
+

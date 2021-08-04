@@ -10,6 +10,7 @@ from . import helper
 from .forms import UserProfile , UserAddress
 from .models import MyUser
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -69,6 +70,7 @@ def verify(request):
         messages.error(request, 'مشکلی به وجود آمده است ، لطفا دوباره تلاش کنید')
         return HttpResponseRedirect(reverse('accounts:register_view'))
 
+@login_required(login_url='accounts:register_view')
 def profile(request):
     user = MyUser.objects.get(id = request.user.id)
 
@@ -90,6 +92,8 @@ def profile(request):
     }
     return render(request,'accounts/profile.html',context)
 
+
+@login_required(login_url='accounts:register_view')
 def address(request):
     user = MyUser.objects.get(id=request.user.id)
     edit_user_form = UserAddress(request.POST or None)
@@ -111,7 +115,7 @@ def address(request):
     return render(request, 'accounts/address.html', context)
 
 
-
+@login_required(login_url='accounts:register_view')
 def favourite(request):
     user = MyUser.objects.get(id=request.user.id)
     product1 = user.fa_user.all()
@@ -127,6 +131,7 @@ def favourite(request):
     return render(request,'accounts/wishlist.html',context)
 
 
+@login_required(login_url='accounts:register_view')
 def history(request):
     data = ItemOrder.objects.filter(user_id= request.user.id)
     data1 = Order.objects.filter(user_id=request.user.id)

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from order.models import OrderForm
 
 
-
+@login_required(login_url='accounts:register_view')
 def cart_detail(request):
     cart = Cart.objects.filter(user_id=request.user.id)
     total = 0
@@ -21,7 +21,7 @@ def cart_detail(request):
     return render(request,'cart/cart.html',context)
 
 
-
+@login_required(login_url='accounts:register_view')
 def cart(request):
     cart = Cart.objects.filter(user_id=request.user.id)
     form = OrderForm()
@@ -73,8 +73,7 @@ def add_cart(request,id):
                 shop.save()
             else:
                 Cart.objects.create(user_id=request.user.id,product_id=id,variant_id=var_id,quantity=info)
-                mori =Cart.objects.create(user_id=request.user.id,product_id=id,variant_id=var_id,quantity=info)
-                mori.save()
+
         return redirect(url)
 
 

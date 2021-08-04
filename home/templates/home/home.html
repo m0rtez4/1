@@ -81,25 +81,45 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dropdn dropdn_wishlist">
-                            <a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link ">
-                                <i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه مندی</span><span
-                                    class="wishlist-qty">3</span>
-                            </a>
-                        </div>
+                        {% if user.is_authenticated %}
+                            <div class="dropdn dropdn_wishlist">
+                                <a href="{% url 'accounts:favourite' %}" class="dropdn-link only-icon wishlist-link ">
+                                    <i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه مندی</span><span
+                                        class="wishlist-qty">{{ product1.count }}</span>
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="dropdn dropdn_wishlist">
+                                <a href="{% url 'accounts:register_view' %}" class="dropdn-link only-icon wishlist-link ">
+                                    <i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه مندی</span><span
+                                        class="wishlist-qty">0</span>
+                                </a>
+                            </div>
+                        {% endif %}
                         <div class="dropdn dropdn_account dropdn_fullheight">
                             <a href="#" class="dropdn-link js-dropdn-link js-dropdn-link only-icon"
                                data-panel="#dropdnAccount"><i class="icon-user"></i><span
                                     class="dropdn-link-txt">حساب کاربری</span></a>
                         </div>
-                        <div class="dropdn dropdn_fullheight minicart">
-                            <a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon"
-                               data-panel="#dropdnMinicart">
-                                <i class="icon-fishing-net"></i>
-                                <span class="minicart-qty">3</span>
-                                <span class="minicart-total hide-mobile">340,000 تومان</span>
-                            </a>
-                        </div>
+                        {% if user.is_authenticated %}
+                            <div class="dropdn dropdn_fullheight minicart">
+                                <a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon"
+                                   data-panel="#dropdnMinicart">
+                                    <i class="icon-fishing-net"></i>
+                                    <span class="minicart-qty">{{ cart.count }}</span>
+                                    <span class="minicart-total hide-mobile">{{ total }} تومان</span>
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="dropdn dropdn_fullheight minicart">
+                                <a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon"
+                                   data-panel="#dropdnMinicart">
+                                    <i class="icon-fishing-net"></i>
+                                    <span class="minicart-qty">0</span>
+                                    <span class="minicart-total hide-mobile">وارد شوید</span>
+                                </a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -120,21 +140,21 @@
                     </div>
                     <div class="hdr-nav hide-mobile nav-holder justify-content-center px-4">
                         <ul class="mmenu mmenu-js">
-                            <li class="mmenu-item--simple"><a href="#">دسته بندی ها</a>
+                            <li class="mmenu-item--simple"><a href="#">دسته بندی ها <span class="menu-label">همه چی داریم :)</span></a>
                                 <div class="mmenu-submenu">
                                     <ul class="submenu-list">
                                         {% for data in category %}
-                                        <li><a href="{% url 'home:category' data.slug%}">{{ data.name}}</a>
-                                            {% if data.sub.first  %}
-                                            <ul>
-                                            {% for info in data.sub.all %}
-                                                <li><a href="{% url 'home:category' info.slug%}">{{ info.name}}</a>
-                                                </li>
-                                            {% endfor %}
+                                            <li><a href="{% url 'home:category' data.slug%}">{{ data.name}}</a>
+                                                {% if data.sub.first  %}
+                                                    <ul>
+                                                        {% for info in data.sub.all %}
+                                                            <li><a href="{% url 'home:category' info.slug%}">{{ info.name}}</a>
+                                                            </li>
+                                                        {% endfor %}
 
-                                            </ul>
-                                        {% endif %}
-                                        </li>
+                                                    </ul>
+                                                {% endif %}
+                                            </li>
                                         {% endfor %}
 
                                     </ul>
@@ -143,153 +163,24 @@
                             <li class="mmenu-item--simple"><a href="#">صفحات</a>
                                 <div class="mmenu-submenu">
                                     <ul class="submenu-list">
-                                        <li><a href="product.html">صفحه محصول</a>
-                                            <ul>
-                                                <li><a href="product.html">صفحه محصول نوع 1<span
-                                                        class="menu-label menu-label--color3">محبوب</span></a>
-                                                </li>
-                                                <li><a href="product-2.html">صفحه محصول نوع 2</a></li>
 
-                                            </ul>
-                                        </li>
-                                        <li><a href="category.html">صفحه دسته بندی</a>
+                                        <li><a href="{% url 'accounts:profile' %}">حساب کاربری</a>
                                             <ul>
-                                                <li><a href="category.html">فیلترهای سایدبار راست</a></li>
-
+                                                {% if user.is_authenticated %}
+                                                    <li><a href="{% url 'accounts:profile' %}">جزئیات حساب کاربری</a></li>
+                                                    <li><a href="{% url 'accounts:address' %}">آدرس ها</a></li>
+                                                    <li><a href="{% url 'accounts:history' %}">تاریخچه سفارشات</a></li>
+                                                    <li><a href="{% url 'accounts:favourite' %}">لیست علاقه مندی</a></li>
+                                                    <li><a href="account-wishlist.html">خروج</a></li>
+                                                {% else %}
+                                                    <li><a href="{% url 'accounts:register_view' %}">ورود / ثبت نام</a></li>
+                                                {% endif %}
                                             </ul>
                                         </li>
-                                        <li><a href="cart.html">سبد خرید و پرداخت</a>
-                                            <ul>
-                                                <li><a href="cart.html">صفحه سبد خرید</a></li>
-
-                                            </ul>
-                                        </li>
-                                        <li><a href="account-create.html">حساب کاربری</a>
-                                            <ul>
-                                                <li><a href="account-create.html">ورود</a></li>
-                                                <li><a href="account-create.html">ایجاد حساب کاربری</a></li>
-                                                <li><a href="account-details.html">جزئیات حساب کاربری</a></li>
-                                                <li><a href="account-addresses.html">آدرس ها</a></li>
-                                                <li><a href="account-history.html">تاریخچه سفارشات</a></li>
-                                                <li><a href="account-wishlist.html">لیست علاقه مندی</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="blog.html">اخبار</a>
-                                            <ul>
-                                                <li><a href="blog.html">سایدبار چپ</a></li>
-
-                                            </ul>
-                                        </li>
-                                        <li><a href="gallery.html">گالری</a></li>
                                         <li><a href="faq.html">سوالات متداول</a></li>
                                         <li><a href="about.html">درباره ما</a></li>
-                                        <li><a href="contact.html">تماس با ما</a></li>
-                                        <li><a href="404.html">خطا 404</a></li>
-                                        <li><a href="typography.html">تایپوگرافی</a></li>
-                                        <li><a href="coming-soon.html" target="_blank">به زودی</a></li>
+                                        <li><a href="{% url 'home:contact' %}">تماس با ما</a></li>
                                     </ul>
-                                </div>
-                            </li>
-                            <li class="mmenu-item--mega"><a href="collections.html"><span>حیوانات خانگی<span
-                                    class="menu-label">پوسته</span></span></a>
-                                <div class="mmenu-submenu mmenu-submenu--has-bottom">
-                                    <div class="mmenu-submenu-inside">
-                                        <div class="container">
-                                            <div class="mmenu-left width-25">
-                                                <div class="mmenu-bnr-wrap">
-                                                    <a href="product.html"
-                                                       class="{% static 'image-hover-scale image-container w-100' %}"
-                                                       style="padding-bottom: 102.91%">
-                                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                             data-srcset="{% static 'images/skins/games/megamenu-game-banner.webp' %}"
-                                                             class="lazyload fade-up" alt="Banner">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="mmenu-cols column-4">
-                                                <div class="mmenu-col">
-                                                    <h3 class="submenu-title"><a href="category.html">کالکشن ها</a>
-                                                    </h3>
-                                                    <ul class="submenu-list">
-                                                        <li><a href="category.html">هنر مارتینز 2020/21<span
-                                                                class="submenu-link-txt">در دسترس در بیوتیک ها
-																		از بهمن 1399</span></a></li>
-                                                        <li><a href="category.html">بهار-تابستان 1400<span
-                                                                class="submenu-link-txt">در دسترس در بیوتیک ها
-																		از آذر 1399</span></a></li>
-                                                        <li><a href="category.html">کالکشن مخصوص بهار-تابستان
-                                                            2021<span class="submenu-link-txt">در بوتیک
-																		ها</span></a></li>
-                                                        <li><a href="category.html">سفر دریایی 2020/21<span
-                                                                class="submenu-link-txt">در بوتیک ها</span></a>
-                                                        </li>
-                                                        <li><a href="category.html">پاییز-زمستان 1400/01</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mmenu-col">
-                                                    <h3 class="submenu-title"><a href="category.html">آماده برای
-                                                        پوشیدن</a></h3>
-                                                    <ul class="submenu-list">
-                                                        <li><a href="category.html" class="active">کت و ژاکت</a>
-                                                            <ul class="sub-level">
-                                                                <li><a href="category.html">ژاکت ویژه</a></li>
-                                                                <li><a href="category.html">کت دوچرخه سواری</a></li>
-                                                                <li><a href="category.html">کاپشن کامیون</a></li>
-                                                                <li><a href="category.html">کت های جین</a></li>
-                                                                <li><a href="category.html">ژاکت های بلوز<span
-                                                                        class="menu-label">فروش ویژه</span></a>
-                                                                </li>
-                                                                <li><a href="category.html">پالتو</a></li>
-                                                                <li><a href="category.html">کت های جدید</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="category.html">لباس<span
-                                                                class="menu-label menu-label--color3">فروش
-																		ویژه</span></a></li>
-                                                        <li><a href="category.html">بلوز و تاپ</a></li>
-                                                        <li><a href="category.html">ژاکت پشمی و پلیور</a></li>
-                                                        <li><a href="category.html">دامن</a></li>
-                                                        <li><a href="category.html">شلوار و شلوارک</a></li>
-                                                        <li><a href="category.html">لباس بیرونی</a></li>
-                                                        <li><a href="category.html">لباس شنا</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mmenu-col">
-                                                    <h3 class="submenu-title"><a href="category.html">لوازم
-                                                        جانبی</a></h3>
-                                                    <ul class="submenu-list">
-                                                        <li><a href="category.html">کت و ژاکت</a></li>
-                                                        <li><a href="category.html">لباس</a></li>
-                                                        <li><a href="category.html">بلوز و تاپ</a></li>
-                                                        <li><a href="category.html">ژاکت پشمی و پلیور</a></li>
-                                                        <li><a href="category.html">دامن<span
-                                                                class="menu-label">فروش ویژه</span></a></li>
-                                                        <li><a href="category.html">شلوار و شلوارک</a></li>
-                                                        <li><a href="category.html">لباس بیرونی</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mmenu-col">
-                                                    <h3 class="submenu-title"><a href="category.html">برند ها</a>
-                                                    </h3>
-                                                    <ul class="submenu-list">
-                                                        <li><a href="category.html">کت و ژاکت</a></li>
-                                                        <li><a href="category.html">لباس</a></li>
-                                                        <li><a href="category.html">بلوز و تاپ</a></li>
-                                                        <li><a href="category.html">ژاکت پشمی و پلیور</a></li>
-                                                        <li><a href="category.html">دامن<span
-                                                                class="menu-label menu-label--color1">فروش
-																		ویژه</span></a></li>
-                                                        <li><a href="category.html">شلوار و شلوارک</a></li>
-                                                        <li><a href="category.html">لباس بیرونی</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mmenu-bottom justify-content-center">
-                                                    <a href="#"><i class="icon-fox icon--lg"></i><b>اخبار فروشگاه
-                                                        فاکسیک</b><i class="icon-arrow-left"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </li>
                             <li><a href="{% url 'home:product' %}"><span class="custom-color"> محصولات ما</span></a></li>
@@ -316,12 +207,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="dropdn dropdn_wishlist">
-                                <a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link ">
-                                    <i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه
-											مندی</span><span class="wishlist-qty">3</span>
-                                </a>
-                            </div>
+                            {% if user.is_authenticated %}
+                                <div class="dropdn dropdn_wishlist">
+                                    <a href="{% url 'accounts:favourite' %}" class="dropdn-link only-icon wishlist-link ">
+                                        <i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه
+											مندی</span>
+
+                                        <span class="wishlist-qty">{{ product1.count }}</span>
+
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="dropdn dropdn_wishlist">
+                                    <a href="{% url 'accounts:register_view' %}" class="dropdn-link only-icon wishlist-link ">
+                                        <i class="icon-heart"></i><span class="dropdn-link-txt">لیست علاقه
+											مندی</span>
+
+                                        <span class="wishlist-qty">0</span>
+
+                                    </a>
+                                </div>
+
+                            {% endif %}
                             <div class="hdr_container_mobile show-mobile">
                                 <div class="dropdn dropdn_account dropdn_fullheight">
                                     <a href="#" class="dropdn-link js-dropdn-link" data-panel="#dropdnAccount"><i
@@ -329,14 +236,27 @@
 												کاربری</span></a>
                                 </div>
                             </div>
-                            <div class="dropdn dropdn_fullheight minicart">
-                                <a href="#" class="dropdn-link js-dropdn-link minicart-link"
-                                   data-panel="#dropdnMinicart">
-                                    <i class="icon-basket"></i>
-                                    <span class="minicart-qty">3</span>
-                                    <span class="minicart-total hide-mobile">340,000 تومان</span>
-                                </a>
-                            </div>
+                            {% if user.is_authenticated %}
+                                <div class="dropdn dropdn_fullheight minicart">
+                                    <a href="#" class="dropdn-link js-dropdn-link minicart-link"
+                                       data-panel="#dropdnMinicart">
+                                        <i class="icon-basket"></i>
+                                        <span class="minicart-qty">{{ cart.count }}</span>
+                                        <span class="minicart-total hide-mobile">{{ total }} تومان</span>
+
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="dropdn dropdn_fullheight minicart">
+                                    <a href="#" class="dropdn-link js-dropdn-link minicart-link"
+                                       data-panel="#dropdnMinicart">
+                                        <i class="icon-basket"></i>
+                                        <span class="minicart-qty">0</span>
+                                        <span class="minicart-total hide-mobile"> وارد شوید</span>
+
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -354,170 +274,48 @@
                     <div class="nav-toggle">
                         <span class="nav-back"><i class="icon-angle-right"></i></span>
                         <span class="nav-title"></span>
-                        <a href="#" class="nav-viewall">مشاهده همه</a>
                     </div>
                     <ul class="nav nav-level-1">
-                        <li><a href="index.html">لایه ها<span class="menu-label menu-label--color1">جدید</span><span
+                        <li><a href="index.html">دسته بندی ها<span class="menu-label menu-label--color1">همه چی داریم :)</span><span
                                 class="arrow"><i class="icon-angle-left"></i></a>
                             <ul class="nav-level-2">
-                                <li><a href="index.html">پوسته مُد (پیش فرض)</a></li>
-                                <li><a href="#">پوسته کتاب<span class="menu-label menu-label--color1">به زودی</span></a></li>
-                                <li><a href="#">پوسته لوازم الکترونیکی<span
-                                        class="menu-label menu-label--color2">به زودی</span></a></li>
-                                <li><a href="index-02.html">صفحه خانه 2</a></li>
+                                {% for data in category %}
+                                    <li><a href="{% url 'home:category' data.slug%}">{{ data.name}}<span class="arrow"><i
+                                            class="icon-angle-left"></i></a>
+                                        <ul class="nav-level-3">
+                                            {% if data.sub.first %}
+                                                {% for info in data.sub.all %}
+                                                    <li><a href="{% url 'home:category' info.slug%}">{{ info.name}}</a></li>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
 
                             </ul>
                         </li>
                         <li><a href="#">صفحات<span class="arrow"><i class="icon-angle-left"></i></a>
                             <ul class="nav-level-2">
-                                <li><a href="product.html">صفحه محصول<span class="arrow"><i
+                                <li><a href="{% url 'accounts:profile' %}">حساب کاربری<span class="arrow"><i
                                         class="icon-angle-left"></i></a>
                                     <ul class="nav-level-3">
-                                        <li><a href="product.html">صفحه محصول نوع 1<span
-                                                class="menu-label menu-label--color3">محبوب</span></a></li>
-                                        <li><a href="product-2.html">صفحه محصول نوع 2</a></li>
-
+                                        {% if user.is_authenticated %}
+                                            <li><a href="{% url 'accounts:profile' %}">جزئیات حساب کاربری</a></li>
+                                            <li><a href="{% url 'accounts:address' %}">آدرس ها</a></li>
+                                            <li><a href="{% url 'accounts:history' %}">تاریخچه سفارشات</a></li>
+                                            <li><a href="{% url 'accounts:favourite' %}">لیست علاقه مندی</a></li>
+                                            <li><a href="{% url 'accounts:favourite' %}">خروج</a></li>
+                                        {% else %}
+                                            <li><a href="account-create.html">ورود / ثبت نام</a></li>
+                                        {% endif %}
                                     </ul>
                                 </li>
-                                <li><a href="category.html">صفحه دسته بندی<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="category.html">فیلترهای سایدبار راست</a></li>
-
-                                    </ul>
-                                </li>
-                                <li><a href="cart.html">سبد خرید و پرداخت<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="cart.html">صفحه سبد خرید</a></li>
-
-                                    </ul>
-                                </li>
-                                <li><a href="account-create.html">حساب کاربری<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="account-create.html">ورود</a></li>
-                                        <li><a href="account-create.html">ایجاد حساب کاربری</a></li>
-                                        <li><a href="account-details.html">جزئیات حساب کاربری</a></li>
-                                        <li><a href="account-addresses.html">آدرس ها</a></li>
-                                        <li><a href="account-history.html">تاریخچه سفارشات</a></li>
-                                        <li><a href="account-wishlist.html">لیست علاقه مندی</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog.html">اخبار<span class="arrow"><i class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="blog.html">سایدبار چپ</a></li>
-
-                                    </ul>
-                                </li>
-                                <li><a href="gallery.html">گالری</a></li>
                                 <li><a href="faq.html">سوالات متداول</a></li>
                                 <li><a href="about.html">درباره ما</a></li>
-                                <li><a href="contact.html">تماس با ما</a></li>
-                                <li><a href="404.html">خطا 404</a></li>
-                                <li><a href="typography.html">تایپوگرافی</a></li>
-                                <li><a href="coming-soon.html" target="_blank">به زودی</a></li>
+                                <li><a href="{% url 'home:contact' %}">تماس با ما</a></li>
                             </ul>
                         </li>
-                        <li><a href="category.html">محصولات جدید<span class="arrow"><i
-                                class="icon-angle-left"></i></a>
-                            <ul class="nav-level-2">
-                                <li><a href="category.html">کفش ها<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="category.html">پاشنه بلند</a></li>
-                                        <li><a href="category.html">پوتین</a></li>
-                                        <li><a href="category.html">تخت</a></li>
-                                        <li><a href="category.html">ورزشی و مجلسی</a></li>
-                                        <li><a href="category.html">مخصوص دویدن</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="category.html">برتر<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="category.html">لباس</a></li>
-                                        <li><a href="category.html">پیراهن و تاپ</a></li>
-                                        <li><a href="category.html">کت و پالتو</a></li>
-                                        <li><a href="category.html">سوییشرت</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="category.html">کفش ها<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="category.html">پاشنه بلند</a></li>
-                                        <li><a href="category.html">پوتین</a></li>
-                                        <li><a href="category.html">تخت</a></li>
-                                        <li><a href="category.html">ورزشی و مجلسی</a></li>
-                                        <li><a href="category.html">مخصوص دویدن</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="category.html">پایین تنه<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="category.html">جین</a></li>
-                                        <li><a href="category.html">شلوار</a></li>
-                                        <li><a href="category.html">شلوار اسلش</a></li>
-                                        <li><a href="category.html">شلوارک</a></li>
-                                        <li><a href="category.html">جوراب</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="category.html">لوازم جانبی<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="category.html">عینک آفتابی</a></li>
-                                        <li><a href="category.html">کلاه</a></li>
-                                        <li><a href="category.html">ساعت</a></li>
-                                        <li><a href="category.html">زیورآلات</a></li>
-                                        <li><a href="category.html">کمربند</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="category.html">کیف ها<span class="arrow"><i
-                                        class="icon-angle-left"></i></a>
-                                    <ul class="nav-level-3">
-                                        <li><a href="category.html">کیف دستی</a></li>
-                                        <li><a href="category.html">کوله پشتی</a></li>
-                                        <li><a href="category.html">کیف بند دار</a></li>
-                                        <li><a href="category.html">کیف پول</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#" target="_blank">قالب فاکسیک<span class="menu-label menu-label--color3">عجله
-										کنید!</span><span class="arrow"><i class="icon-angle-left"></i></span></a></li>
                     </ul>
-                </div>
-                <div class="mobilemenu-bottom">
-                    <div class="mobilemenu-currency">
-                        <div class="dropdn_currency">
-                            <div class="dropdn dropdn_caret">
-                                <a href="#" class="dropdn-link js-dropdn-link">تومان<i
-                                        class="icon-angle-down"></i></a>
-                                <div class="dropdn-content">
-                                    <ul>
-                                        <li class="active"><a href="#"><span>تومان</span></a></li>
-                                        <li><a href="#"><span>دلار</span></a></li>
-                                        <li><a href="#"><span>لیر</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mobilemenu-language">
-                        <div class="dropdn_language">
-                            <div class="dropdn dropdn_language dropdn_language--noimg dropdn_caret">
-                                <a href="#" class="dropdn-link js-dropdn-link"><span
-                                        class="js-dropdn-select-current">فارسی</span><i
-                                        class="icon-angle-down"></i></a>
-                                <div class="dropdn-content">
-                                    <ul>
-                                        <li class="active"><a href="#"><img src="{% static 'images/flags/en.webp' %}"
-                                                                            alt="">فارسی</a></li>
-                                        <li><a href="#"><img src="{% static 'images/flags/en.webp' %}" alt="">انگلیسی</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -525,26 +323,27 @@
     <div class="dropdn-content account-drop" id="dropdnAccount">
         <div class="dropdn-content-block">
             <div class="dropdn-close"><span class="js-dropdn-close">بستن</span></div>
-            <ul>
-                <li><a href="account-create.html"><span>ورود</span><i class="icon-login"></i></a></li>
-                <li><a href="account-create.html"><span>ثبت نام</span><i class="icon-user2"></i></a></li>
-                <li><a href="checkout.html"><span>پرداخت</span><i class="icon-card"></i></a></li>
-            </ul>
-            <div class="dropdn-form-wrapper">
-                <h5>ورود سریع</h5>
-                <form action="#">
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control--sm is-invalid"
-                               placeholder="ایمیل خود را وارد کنید">
-                        <div class="invalid-feedback">نمی تواند خالی باشد</div>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control form-control--sm"
-                               placeholder="رمز عبور خود را وارد کنید">
-                    </div>
-                    <button type="submit" class="btn">وارد شوید</button>
-                </form>
-            </div>
+            {% if user.is_authenticated %}
+                <ul>
+                    <li><a href="{% url 'accounts:profile' %}"><span>جزئیات حساب کاربری</span><i class="icon-user2"></i></a></li>
+                    <li><a href="{% url 'accounts:address' %}"><span>آدرس من</span><i class="icon-pencil"></i></a></li>
+                    <li><a href="{% url 'accounts:history' %}"><span>تاریخچه سفارشات من</span><i class="icon-shopbag"></i></a></li>
+
+                </ul>
+                <div class="dropdn-form-wrapper">
+                    <a href="account-create.html"><button type="submit" class="btn">خروج</button></a>
+                </div>
+            {% else %}
+                <ul>
+                    <li><a href="{% url 'accounts:register_view' %}"><button type="submit" class="btn">ورود / ثبت نام</button><i class="icon-login"></i></a></li>
+
+
+                </ul>
+                <div class="mt-2"></div>
+                <div class="form-control text-center" style="height: auto">
+                    <h7>فقط کافیه یه شماره تماس به ما بدی و تو سایتمون ثبت نام کنی :)</h7>
+                </div>
+            {% endif %}
         </div>
         <div class="drop-overlay js-dropdn-close"></div>
     </div>
@@ -603,27 +402,25 @@
 							</svg>
                     </div>
                 </div>
-                <a href="#" class="minicart-drop-countdown mt-3">
-                    <div class="countdown-box-full">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto"><i class="icon-gift icon--giftAnimate"></i></div>
-                            <div class="col">
-                                <div class="countdown-txt">هنگام خرید 2 محصول، محصول سوم
-                                    را هدیه بگیرید
-                                </div>
-                                <div class="countdown js-countdown" data-countdown="2021/12/01"></div>
-                            </div>
+                {% if total <= 300000 %}
+                    <div class="minicart-drop-info  d-md-block">
+                        <div class="shop-feature-single row no-gutters align-items-center">
+                            <div class="shop-feature-icon col-auto"><i class="icon-truck"></i></div>
+                            <div class="shop-feature-text col text-center"> <b>جایزه داریم</b>
+                                <hr> برای افزودن
+                                محصولات بیشتر و دریافت ارسال
+                                رایگان ، به خرید خود ادامه دهید</div>
                         </div>
                     </div>
-                </a>
-                <div class="minicart-drop-info d-none d-md-block">
-                    <div class="shop-feature-single row no-gutters align-items-center">
-                        <div class="shop-feature-icon col-auto"><i class="icon-truck"></i></div>
-                        <div class="shop-feature-text col"><b>ارسال!</b> برای افزودن
-                            محصولات بیشتر و دریافت ارسال
-                            رایگان ، به خرید خود ادامه دهید</div>
+                {% else %}
+                    <div class="minicart-drop-info  d-md-block">
+                        <div class="shop-feature-single row no-gutters align-items-center">
+                            <div class="shop-feature-icon col-auto"><i class="icon-truck"></i></div>
+                            <div class="shop-feature-text col text-center"> <b>تبریک میگم</b>
+                                <hr>برات رایگان ارسال می کنیم</div>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
             <div class="minicart-drop-fixed js-hide-empty">
                 <div class="loader-horizontal-sm js-loader-horizontal-sm" data-loader-horizontal=""><span></span>
@@ -631,12 +428,12 @@
                 <div class="minicart-drop-total js-minicart-drop-total row no-gutters align-items-center">
                     <div class="minicart-drop-total-txt col-auto heading-font">جمع کل
                     </div>
-                    <div class="minicart-drop-total-price col" data-header-cart-total="">340,000 تومان</div>
+                    <div class="minicart-drop-total-price col" data-header-cart-total="">{{ total}} تومان</div>
                 </div>
                 <div class="minicart-drop-actions">
-                    <a href="cart.html" class="btn btn--md btn--grey"><i class="icon-basket"></i><span>سبد
+                    <a href="{% url 'cart:cart_detail' %}" class="btn btn--md btn--grey"><i class="icon-basket"></i><span>سبد
 								خرید</span></a>
-                    <a href="checkout.html" class="btn btn--md"><i class="icon-checkout"></i><span>پرداخت</span></a>
+                    <a href="{% url 'cart:cart' %}" class="btn btn--md"><i class="icon-checkout"></i><span>پرداخت</span></a>
                 </div>
                 <ul class="payment-link mb-2">
                     <li><i class="icon-amazon-logo"></i></li>
@@ -2230,10 +2027,10 @@
                 <div class="col-lg-10">
                     <div class="footer-block">
                         <ul class="footer-list-inline">
-                            <li><a href="account-details.html">حساب کاربری</a></li>
-                            <li><a href="cart.html">مشاهده سبد خرید</a></li>
-                            <li><a href="account-wishlist.html">لیست علاقه مندی</a></li>
-                            <li><a href="account-history.html">وضعیت سفارش</a></li>
+                            <li><a href="{% url 'accounts:profile' %}">حساب کاربری</a></li>
+                            <li><a href="{% url 'cart:cart_detail' %}">مشاهده سبد خرید</a></li>
+                            <li><a href="{% url 'accounts:favourite' %}">لیست علاقه مندی</a></li>
+                            <li><a href="{% url 'accounts:history' %}">وضعیت سفارش</a></li>
                         </ul>
                     </div>
                 </div>
@@ -2449,39 +2246,7 @@
         </div>
     </div>
 </div>
-<div class="footer-sticky">
-    <div class="payment-notification-wrap js-pn" data-visible-time="3000" data-hidden-time="3000" data-delay="500"
-         data-from="تهران ,مشهد ,تبریز ,مازندران ,شیراز"
-         data-products='[{"productname":"شلوار چرمی", "productlink":"product.html","productimage":"{% static 'images/skins/fashion/products/product-01-1.webp' %}"},{"productname":"کوله پشتی پارچه ای مشکی", "productlink":"product.html","productimage":"{% static 'images/skins/fashion/products/product-28-1.webp' %}"},{"productname":"کفش های کتانی", "productlink":"product.html","productimage":"{% static 'images/skins/fashion/products/product-23-1.webp' %}"}]'>
-        <div class="payment-notification">
-            <div class="payment-notification-inside">
-                <div class="payment-notification-container">
-                    <a href="#" class="payment-notification-image js-pn-link">
-                        <img src="{% static 'images/products/product-01.webp' %}" class="js-pn-image" alt="">
-                    </a>
-                    <div class="payment-notification-content-wrapper">
-                        <div class="payment-notification-content">
-                            <div class="payment-notification-text">دیگران خریداری کردند
-                            </div>
-                            <a href="product.html" class="payment-notification-name js-pn-name js-pn-link">Apple
-                                watch</a>
-                            <div class="payment-notification-bottom">
-                                <div class="payment-notification-when"><span class="js-pn-time">32</span> دقیقه پیش
-                                </div>
-                                <div class="payment-notification-from">از <span class="js-pn-from">شهر کنار
-											رودخانه</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="payment-notification-close"><i class="icon-close-bold"></i>
-                </div>
-                <div class="payment-notification-qw prd-hide-mobile js-prd-quickview"
-                     data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i></div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="{% static 'js/vendor-special/lazysizes.min.js' %}"></script>
 <script src="{% static 'js/vendor-special/ls.bgset.min.js' %}"></script>
 <script src="{% static 'js/vendor-special/ls.aspectratio.min.js' %}"></script>
