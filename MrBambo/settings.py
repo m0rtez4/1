@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'taggit',
     'cart.apps.CartConfig',
     'order.apps.OrderConfig',
-    'django_jalali'
+    'django_jalali',
+    'django_filters',
+    'azbankgateways',
 
 ]
 
@@ -157,3 +159,21 @@ CKEDITOR_CONFIGS = {
 }
 
 TAGGIT_CASE_INSENSITIVE = True
+
+AZ_IRANIAN_BANK_GATEWAYS = {
+   'GATEWAYS': {
+       'MELLAT': {
+           'TERMINAL_CODE': '5276487',
+           'USERNAME': 'LebasKhab',
+           'PASSWORD': '12750856',
+       },
+   },
+   'DEFAULT': 'BMI',
+   'CURRENCY': 'IRR', # اختیاری
+   'TRACKING_CODE_QUERY_PARAM': 'tc', # اختیاری
+   'TRACKING_CODE_LENGTH': 16, # اختیاری
+   'SETTING_VALUE_READER_CLASS': 'azbankgateways.readers.DefaultReader', # اختیاری
+   'BANK_PRIORITIES': [
+
+   ], # اختیاری
+}

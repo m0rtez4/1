@@ -6,7 +6,7 @@
 {% block content %}
 
     <div class="page-content" style="min-height: 106.6px;">
-		<div class="holder mt-0 py-3 py-sm-5 py-md-10 bg-cover fade-up-fast lazyloaded" data-bgset="images/pages/contact-bg.webp" style="background-image: url(&quot;file:///C:/Users/admin/Desktop/Foxic1/images/pages/contact-bg.webp&quot;);">
+		<div class="holder mt-0 py-3 py-sm-5 py-md-10 bg-cover fade-up-fast lazyloaded" data-bgset="{% static 'images/pages/contact-bg.webp' %}" style="background-image: url({% static 'images/pages/contact-bg.webp' %});">
 			<div class="container">
 				<div class="row">
 					<div class="col-12 col-md-9 col-xl-9">
@@ -27,7 +27,7 @@
 					</div>
 				</div>
 			</div>
-		<picture style="display: none;"><source data-srcset="images/pages/contact-bg.webp" sizes="1519px" srcset="images/pages/contact-bg.webp"><img alt="" class="lazyautosizes lazyloaded" data-sizes="auto" data-parent-fit="cover" sizes="1519px"></picture></div>
+		<picture style="display: none;"><source data-srcset="{% static 'images/pages/contact-bg.webp' %}" sizes="1519px" srcset="{% static 'images/pages/contact-bg.webp' %}"><img alt="" class="lazyautosizes lazyloaded" data-sizes="auto" data-parent-fit="cover" sizes="1519px"></picture></div>
 		<div class="holder">
 			<div class="container">
 				<div class="title-wrap text-center">
@@ -85,7 +85,7 @@
 							<div>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
 								نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</div>
 						</div>
-						<form data-toggle="validator" class="contact-form" id="contactForm" novalidate="novalidate" method="post" action="{% url 'home:contact' %}">
+						<form method="post" action="{% url 'home:contact_create' %}">
 							{% csrf_token %}
                             <div class="form-confirm">
 								<div class="success-confirm">
@@ -118,7 +118,7 @@
 							<div class="form-group">
 								<textarea class="form-control form-control--sm textarea--height-200" name="message" placeholder="پیام" required=""></textarea>
 							</div>
-							<button class="btn" type="submit">ارسال پیام</button>
+							<button class="btn"  type="submit">ارسال پیام</button>
 						</form>
 					</div>
 					<div class="col-sm-9">

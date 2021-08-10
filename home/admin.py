@@ -45,6 +45,9 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['user','product','create','is_active','is_reply']
     list_editable = ['is_active','is_reply']
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['name','lastName','email','phone','message']
+
 
 
 admin.site.register(Category,CategoryAdmin)
@@ -54,3 +57,4 @@ admin.site.register(Size,SizeAdmin)
 admin.site.register(Color,ColorAdmin)
 admin.site.register(Comment,CommentAdmin)
 admin.site.register(Images)
+admin.site.register(Contact,ContactAdmin)

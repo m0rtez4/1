@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.forms import ModelForm
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from taggit.managers import TaggableManager
@@ -46,6 +47,7 @@ class Product(models.Model):
     create = jmodels.jDateField(auto_now_add=True,verbose_name='تاریح ثیت محصول')
     update = jmodels.jDateField(auto_now=True,verbose_name='تاریخ آخرین بروزرسانی')
     image = models.ImageField(upload_to='product',verbose_name='عکس محصول')
+    image2 = models.ImageField(upload_to='product',verbose_name='عکس محصول2 (اختیاری)',blank=True)
     category = models.ManyToManyField(Category, blank=True, verbose_name='دسته بندی')
     sku = models.CharField(max_length=150)
     slug = models.SlugField(allow_unicode=True, unique=True, null=True,verbose_name='آدرس url')
@@ -53,6 +55,7 @@ class Product(models.Model):
     favourite = models.ManyToManyField(MyUser,blank=True,related_name='fa_user',verbose_name='مورد علاقه ی کاربران')
     available = models.BooleanField(default=True, verbose_name='موجود / ناموجود')
     status = models.CharField(null=True, blank=True, max_length=200, choices=VARIANT, verbose_name='وضعیت ویژگی')
+    visit_count = models.IntegerField(default=0,verbose_name='تعداد بازدید محصول')
 
     class Meta:
         verbose_name = 'محصول'
@@ -164,3 +167,20 @@ class Images(models.Model):
     class Meta:
         verbose_name = 'عکس'
         verbose_name_plural = 'عکس ها'
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100,verbose_name='نام کاربر')
+    lastName = models.CharField(max_length=100,verbose_name='نام فامیلی کاربر')
+    email = models.CharField(max_length=100,verbose_name='ایمیل کاربر')
+    phone = models.CharField(max_length=100,verbose_name='شماره تماس کاربر')
+    message = models.TextField(max_length=1000,verbose_name='پیام کاربر')
+
+    class Meta:
+        verbose_name = 'تماس با ما'
+        verbose_name_plural = 'تماس با ما'
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name','lastName','email','phone','message']

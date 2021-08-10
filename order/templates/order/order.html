@@ -150,6 +150,13 @@
                         <div class="cart-total text-center">
                             <div class="mt-2"></div>
                             <h1> جمع کل :  {{ order.get_price }} تومان</h1>
+                            {% if order.radio2 == '3' %}
+                            <a href="">heloo</a>
+                            {% else %}
+                            <a href="">by</a>
+                                <a href="">{{ order.radio2 }}</a>
+                            {% endif %}
+                        <h1> قابل پرداخت : {{ order.get_price2 }} (هزینه پست)  </h1>
                         </div>
                         <div class="mt-2"></div>
                         <div class="card align-items-center  col-md-18 col-lg-18 text-center  ">

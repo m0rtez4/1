@@ -30,7 +30,7 @@ class Order(models.Model):
     discount = models.PositiveIntegerField(blank=True,null=True,verbose_name='مقدار تخفیف')
     send = models.CharField(max_length=30,choices=SHOT,default='در حال پردازش',verbose_name='وضعیت ارسال' )
     code = models.CharField(max_length=100,blank=True,null=True,verbose_name='کد رهگیری')
-
+    radio2 = models.CharField(max_length=20,blank=True,null=True,verbose_name='نحوه پرداخت')
 
     class Meta:
         verbose_name = 'سفارش'
@@ -46,6 +46,12 @@ class Order(models.Model):
             return int(total - discount_price)
         return total
 
+    def get_price2(self):
+        if self.radio2 == '4':
+            return self.get_price()
+        else:
+            total = 15000
+            return total
 
 
 
