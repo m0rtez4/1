@@ -22538,11 +22538,11 @@ img.color-bordered {
 
 /*  8.4. Product Colors  */
 .color-red {
-    background-color: red;
+    background-color: #53a8c6;
 }
 
 .color-white {
-    background-color: white;
+    background-color: #c67169;
 }
 
 .color-blue {
@@ -22561,11 +22561,11 @@ img.color-bordered {
 }
 
 .color-green {
-    background-color: green;
+    background-color: #6dce69;
 }
 
 .color-purple {
-    background-color: purple;
+    background-color: #ce82ca;
 }
 
 /*  8.4. Product Countdown  */

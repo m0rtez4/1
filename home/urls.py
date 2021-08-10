@@ -13,6 +13,8 @@ urlpatterns = [
     path('favourite/<int:id>/<slug>/',views.favourite_product,name='favourite'),
     path('contact/',views.contact,name='contact'),
     path('contact/create/',views.contact_create,name='contact_create'),
+    path('about-page',views.about_page,name='about_page'),
+    path('faq-page',views.faq,name='faq_page')
 
 
 ]

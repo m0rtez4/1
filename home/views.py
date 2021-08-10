@@ -1,3 +1,5 @@
+import itertools
+
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import MyUser, CommentForm, Comment, Category, Product, Variants, Images
@@ -8,37 +10,59 @@ from django.core.paginator import Paginator
 from .filters import ProductFilter
 
 
-
+def my_grouper(n,iterable):
+    args = [iter(iterable)]*n
+    return ([e for e in t if e is not None] for t in itertools.zip_longest(*args))
 
 def home(request):
     try:
+
+
         user = MyUser.objects.get(id=request.user.id)
         product1 = user.fa_user.all()
+        product = Product.objects.all()
+        filter = ProductFilter(request.GET, queryset=product)
         cart = Cart.objects.filter(user_id=request.user.id)
         category = Category.objects.filter(sub_cat=False)
         form = SearchForm()
+        order = Cart.objects.filter(user_id=request.user.id)
         total = 0
-        for p in cart:
+        for p in order:
             if p.product.status != 'None':
                 total += p.variant.total_price * p.quantity
             else:
                 total += p.product.total_price * p.quantity
+
+        filter = Product.objects.order_by('-create').all()[:8]
+        most_visit = Product.objects.order_by('-visit_count').all()[:6]
+        most_discount = Product.objects.order_by('-discount').all()[:4]
         context = {
             'category': category,
             'form': form,
             'product1': product1,
             'cart': cart,
-            'total': total
+            'total': total,
+            'filter': filter,
+            'product':product,
+            'most_visit':most_visit,
+            'most_discount':most_discount,
+            'order':order,
+
         }
         return render(request, 'home/home.html', context)
 
     except:
-
+        most_discount = Product.objects.order_by('-discount').all()[:4]
+        most_visit = Product.objects.order_by('-visit_count').all()[:6]
+        filter = Product.objects.order_by('-create').all()[:8]
         category = Category.objects.filter(sub_cat=False)
         form = SearchForm()
         context ={
             'category':category,
             'form':form,
+            'filter':filter,
+            'most_visit': most_visit,
+            'most_discount':most_discount,
         }
         return render(request, 'home/home.html', context)
 
@@ -69,7 +93,9 @@ def all_product(request,slug=None):
             'category':category,
             'form':form,
             'product1': product1,
-            'filter':filter
+            'filter':filter,
+
+
 
         }
         return render(request, 'home/product.html', context)
@@ -91,7 +117,8 @@ def all_product(request,slug=None):
             'products': page_obj,
             'category': category,
             'form': form,
-            'filter': filter
+            'filter': filter,
+
 
 
         }
@@ -103,7 +130,8 @@ def all_product(request,slug=None):
 
 
 def product_detail(request,id=None,slug=None):
-    product = get_object_or_404(Product,id=id)
+
+    product : Product = get_object_or_404(Product,id=id)
     images = Images.objects.filter(product_id=id)
     comment_form = CommentForm()
     comment = Comment.objects.filter(product_id=id)
@@ -112,6 +140,8 @@ def product_detail(request,id=None,slug=None):
     if product.favourite.filter(id=request.user.id).exists():
         is_favourite = True
     similar = product.tags.similar_objects()[:2]
+    product.visit_count += 1
+    product.save()
     if product.status != 'None' :
         if request.method == 'POST':
             var_id = request.POST.get('select')
@@ -216,3 +246,8 @@ def contact_create(request):
         return redirect(url)
 
 
+def about_page(request):
+    return render(request,'home/about_page.html')
+
+def faq(request):
+    return render(request,'home/faq.html')

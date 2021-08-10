@@ -47,6 +47,7 @@ class Product(models.Model):
     create = jmodels.jDateField(auto_now_add=True,verbose_name='تاریح ثیت محصول')
     update = jmodels.jDateField(auto_now=True,verbose_name='تاریخ آخرین بروزرسانی')
     image = models.ImageField(upload_to='product',verbose_name='عکس محصول')
+    image2 = models.ImageField(upload_to='product',verbose_name='عکس محصول2 (اختیاری)',blank=True)
     category = models.ManyToManyField(Category, blank=True, verbose_name='دسته بندی')
     sku = models.CharField(max_length=150)
     slug = models.SlugField(allow_unicode=True, unique=True, null=True,verbose_name='آدرس url')
@@ -54,6 +55,7 @@ class Product(models.Model):
     favourite = models.ManyToManyField(MyUser,blank=True,related_name='fa_user',verbose_name='مورد علاقه ی کاربران')
     available = models.BooleanField(default=True, verbose_name='موجود / ناموجود')
     status = models.CharField(null=True, blank=True, max_length=200, choices=VARIANT, verbose_name='وضعیت ویژگی')
+    visit_count = models.IntegerField(default=0,verbose_name='تعداد بازدید محصول')
 
     class Meta:
         verbose_name = 'محصول'
