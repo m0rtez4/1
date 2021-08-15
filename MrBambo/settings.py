@@ -163,9 +163,9 @@ TAGGIT_CASE_INSENSITIVE = True
 AZ_IRANIAN_BANK_GATEWAYS = {
    'GATEWAYS': {
        'MELLAT': {
-           'TERMINAL_CODE': '5276487',
-           'USERNAME': 'LebasKhab',
-           'PASSWORD': '12750856',
+           'TERMINAL_CODE': '',
+           'USERNAME': '',
+           'PASSWORD': '',
        },
    },
    'DEFAULT': 'BMI',
