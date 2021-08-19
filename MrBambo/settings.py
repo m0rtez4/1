@@ -10,8 +10,6 @@ MESSAGE_TAGS = {
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-*5qbmb8d*_un2uiwc%%p_vyifw=bpfxqad*ruq@=d0td=krz*q'
-
 
 DEBUG = True
 
